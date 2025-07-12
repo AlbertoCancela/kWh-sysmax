@@ -1,5 +1,6 @@
 <?php
 require 'TuyaCloud.php';
+include_once 'tuyaController.php';
 
 $options = [
   'baseUrl' => 'https://openapi-ueaz.tuyaus.com', // URL API of Tuya
@@ -7,11 +8,12 @@ $options = [
   'secretKey' => '0a678287cdf64fb8a4a99a520be9c30d', // access secret 
 ];
 
+$tuyaController = new TuyaController();
 $tuya = new TuyaCloud($options);
 $IdDevicesPath = "tuyaIdDevices.json";
 
 try {
-    $jsonString = file_get_contents($IdDevicesPath);
+    $jsonString = file_get_contents(__DIR__ . "/tuyaIdDevices.json");
     $data = json_decode($jsonString, true);
     $i = 1;
     $breakersData = [];
@@ -30,14 +32,10 @@ try {
         }
         $i++;
     }
-    echo json_encode($breakersData, JSON_PRETTY_PRINT);
+    // echo json_encode($breakersData, JSON_PRETTY_PRINT);
+    $tuyaController->dataProcessing($breakersData);
     
-    // $response = $tuya->getDevice('65e6a732254c5669aceikp');
-    // $kWh = $response['result'][0];
-    // $status = $response['result'][10];
-    // $tempCurrent = $response['result'][11];
-    // echo (json_encode($response, JSON_PRETTY_PRINT));
 } catch (Exception $e) {
-  echo 'Error: ' . $e->getMessage();
+    echo 'Error: ' . $e->getMessage();
 }
 ?>

@@ -1,27 +1,24 @@
 <?php
 
-
-class Connection{ #Thinking to the future :)
-    private $host = "";
-    private $port = "";
-    private $dbname = "";
-    private $username = "";
-    private $password = "";
-
+class Connection {
+    private $dbPath = '/home/poe/Workspace/projects/kWh-sysmax/backend/dataBases/SYSMAX-KWH.db'; // Ruta al archivo SQLite
     private $conn;
 
     protected $testing;
 
     public function __construct($myTestArg) {
         try {
-            if (!$myTestArg){ 
-                $dsn = "mysql:host={$this->host};port={$this->port};dbname={$this->dbname};charset=utf8mb4";
-                $this->conn = new PDO($dsn, $this->username, $this->password, [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                ]);
-            }
-            else{
-                $this->testing = ["admon" => ["4321", 1, "Administrador"], "user" => ["123", 2, "Usuario básico"]];
+            if (!$myTestArg) {
+                // Conexión SQLite
+                $dsn = "sqlite:" . $this->dbPath;
+                $this->conn = new PDO($dsn);
+                $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } else {
+                // Modo testing con datos de ejemplo
+                $this->testing = [
+                    "admon" => ["4321", 1, "Administrador"],
+                    "user" => ["123", 2, "Usuario básico"]
+                ];
             }
         } catch (PDOException $e) {
             http_response_code(500);
@@ -32,7 +29,8 @@ class Connection{ #Thinking to the future :)
             exit;
         }
     }
-    protected function getConnection() { 
+
+    public function getConnection() {
         return $this->conn;
     }
 }
