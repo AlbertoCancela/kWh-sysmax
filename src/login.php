@@ -13,7 +13,7 @@ if (isset($_SESSION['userName'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="../public/img/sysmax_logo_transp.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../public/img/sysmax_logo64.png" type="image/png">
   <link rel="stylesheet" href="../public/css/styles.css">
   <link rel="stylesheet" href="../public/css/login.css">
   <link href='../public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
@@ -21,7 +21,7 @@ if (isset($_SESSION['userName'])) {
 </head>
   <body class="centerItems">    
     <div class="login-box">
-      <img src="../public/img/sysmax_logo_transp.png" alt="">
+      <img src="../public/img/sysmax_logow.png" alt="">
       <form id="login-login">
         <div class="user-box">
           <input type="text" name="username" required="" value="admon">

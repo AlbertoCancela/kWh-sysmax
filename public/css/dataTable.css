@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.banner-sysmax {
+    width: inherit;
+    height: 300px;
+    background-image: url(../img/Rack.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.table-title {
+    padding-bottom: 30px;
+    font-size: 1.2em;
+    font-family: var(--title-font);
+    color: var(--borderbottom-color);
+    text-align: center;
+}
+
+.table-section {
+    place-items: center;
+    width: inherit;
+    max-width: 1400px;
+    height: auto;
+    padding: 50px 30px;
+    margin: auto;
+}
+
+#table-breakerDisplay {
+    background-color: var(--top-bar_color);
+    max-width: fit-content;
+    text-align: left;    
+    border-collapse: collapse;
+    font-family: var(--text-font);
+    font-size: .88em;
+    margin-bottom: 30px;
+    overflow-y: auto;
+}
+
+th, td {
+    border: solid 1px var(--borderbottom-color);
+    padding: 7px;
+}
+
+thead {
+    background-color: var(--borderbottom-color);
+    color: var(--top-bar_color);
+    border-bottom: 2px solid var(--sysmax-blue1);
+}
+
+tr:nth-child(even) {
+    background-color: var(--txt-color);
+}
+
+tr:hover {
+    background-color: var(--borderbottom-color);
+    color: var(--top-bar_color);
+}
+

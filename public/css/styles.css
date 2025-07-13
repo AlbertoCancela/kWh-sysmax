@@ -20,10 +20,6 @@
   --sysmax-error: #ff6961;
 }
 
-html {
-  background-color: var(--sysmax-blue1);
-}
-
 /* Mantener footer hasta abajo */
 
 .main-con {
@@ -71,6 +67,23 @@ html {
   align-items: center;  
 }
 
+.btn-close {
+  background-color: var(--sysmax-error);
+  font-family: var(--text-font);
+  font-size: 1em;
+  padding: 7px 10px;
+  color: var(--top-bar_color);
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px 1px solid var(--borderbottom-color);
+  transition: background-color .3s ease;
+}
+
+.btn-close:hover {
+  background-color: #c8102e;
+}
+
 .box-link {  
   text-align: center;
 }
@@ -82,6 +95,7 @@ html {
   font-size: .88em;
   text-align: right;
   padding-left: 10px;
+  text-transform: uppercase;
 }
 
 .reading {
@@ -103,6 +117,7 @@ html {
 .sysmax-main  {  
   width: 100%;
   height: auto;
+  background-color: var(--top-bar_color);
 }
 
 .sysmax-con {
@@ -128,8 +143,7 @@ html {
   width: 200px;
   height: 160px;
   background-color: var(--top-bar_color);
-  box-shadow: 1px 1px 3px var(--borderbottom-color);
-  /* outline: 1px solid var(--borderbottom-color); */
+  box-shadow: 1px 1px 3px var(--borderbottom-color);  
   border-right: 1.5px solid var(--borderbottom-color);
   border-bottom: 1.5px solid var(--borderbottom-color); 
   border-radius: 10px;
@@ -198,6 +212,13 @@ html {
   font-weight: bold;
   color: var(--title-color);
   outline: 1px solid var(--title-color)
+}
+
+#pagination button {
+  padding: 5px 7px;
+  font-family: var(--title-font);
+  font-size: 1em;
+  cursor: pointer;  
 }
 
 .sysmax-footer {

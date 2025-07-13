@@ -1,46 +1,53 @@
-html {
-  height: 100%;
+body {
+  background-color: aliceblue;
 }
 
 .login-box {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 400px;
-  padding: 40px;
+  width: 280px;
+  height: 380px;
+  padding: 20px;
   transform: translate(-50%, -50%);
-  background: rgba(0,0,0,.5);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
-  border-radius: 10px;
+  background-color: white;  
+  box-shadow: 0 0 10px 1px var(--txt-color);
+  outline: 1px solid var(--borderbottom-color);
+  border-bottom: 5px solid var(--sysmax-blue);
+  text-align: center;  
 }
 
 .login-box img {
+  text-align: center;
   width: 100%;
-  padding: 1em;
+  display: block;
+  padding-bottom: 30px;
 }
 
 .login-box .user-box {
   position: relative;
+  margin: 0 20px;  
 }
 
 .login-box .user-box input {
   width: 100%;
   padding: 10px 0;
-  font-size: 16px;
-  color: var(--top-bar_color);
+  font-size: 1em;
+  font-family: var(--text-font);
   margin-bottom: 30px;
   border: none;
-  border-bottom: 1px solid var(--top-bar_color);
+  border-bottom: 1px solid var(--txt-color);
   outline: none;
   background: transparent;
+  color: var(--borderbottom-color);    
 }
-.login-box .user-box label {
+
+.login-box .user-box > label {
   position: absolute;
   top:0;
   left: 0;
-  padding: 10px 0;
-  font-size: 16px;
+  padding-bottom: 20px;
+  font-size: 1.2em;
   color: #fff;
   pointer-events: none;
   transition: .5s;
@@ -51,7 +58,8 @@ html {
   top: -20px;
   left: 0;
   color: var(--sysmax-blue);
-  font-size: 12px;
+  padding-bottom: 10px;
+  font-size: 1.2em;
 }
 
 .login-box form a {
@@ -67,16 +75,16 @@ html {
   margin-top: 40px;
   letter-spacing: 4px
 }
+
 .login-box .user-box button{
   margin-top: .2em;
-    width: 8em;
-    height: 2em;
-    font-size: 16px;
-    color: var(--sysmax-blue2);
-    transition-duration: 0.4s;
-    outline: none;
-    border-radius: 6px;
-    border: none;
+  width: 8em;
+  height: 2em;
+  font-size: 16px;
+  color: var(--sysmax-blue2);
+  transition-duration: 0.4s;
+  outline: none;  
+  border: none;
 }
 
 .login-box .user-box button:hover{

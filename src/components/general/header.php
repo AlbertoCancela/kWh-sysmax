@@ -6,7 +6,7 @@
             </div>            
             <div class="client">
               <h3 class="clientname"><?php echo $_SESSION['userName']?></h3>
-              <button onclick="closeSession()">Cerrar Sesión</button>
+              <button onclick="closeSession()" class="btn-close">Cerrar Sesión</button>
             </div>
           </div>
         </div>
