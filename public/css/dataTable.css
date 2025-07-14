@@ -23,7 +23,7 @@
 
 .table-section {
     place-items: center;
-    width: inherit;
+    width: 100%;
     max-width: 1400px;
     height: auto;
     padding: 50px 30px;
@@ -32,7 +32,7 @@
 
 #table-breakerDisplay {
     background-color: var(--top-bar_color);
-    max-width: fit-content;
+    width: 100%;
     text-align: left;    
     border-collapse: collapse;
     font-family: var(--text-font);
@@ -46,6 +46,20 @@ th, td {
     padding: 7px;
 }
 
+#table-breakerDisplay tbody td:nth-child(5){
+    text-align: center;
+}
+
+.dashboard-showDetails{
+    width: 60%;
+}
+
+.dashboard-showDetails:hover{
+    cursor: pointer;
+    background-color: var(--sysmax-blue1);
+    transition: 0.1s;
+}
+
 thead {
     background-color: var(--borderbottom-color);
     color: var(--top-bar_color);
@@ -56,8 +70,8 @@ tr:nth-child(even) {
     background-color: var(--txt-color);
 }
 
-tr:hover {
-    background-color: var(--borderbottom-color);
+/* tr:hover {
+    background-color: rgba(60, 60, 60, 0.8);
     color: var(--top-bar_color);
-}
+} */
 

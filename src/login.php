@@ -24,11 +24,11 @@ if (isset($_SESSION['userName'])) {
       <img src="../public/img/sysmax_logow.png" alt="">
       <form id="login-login">
         <div class="user-box">
-          <input type="text" name="username" required="" value="admon">
+          <input type="text" name="username" required="" value="admin">
           <label>Username</label>
         </div>
         <div class="user-box">
-          <input type="password" name="password" required="" value="4321">
+          <input type="password" name="password" required="" value="1234">
           <label>Password</label>
         </div>
         <span id="spanLogin" class="hidden login-spanErrorMessage"> Usuario y/o contraseña incorrectos.</span>

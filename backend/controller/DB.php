@@ -1,25 +1,14 @@
 <?php
 
 class Connection {
-    private $dbPath = '/home/poe/Workspace/projects/kWh-sysmax/backend/dataBases/SYSMAX-KWH.db'; // Ruta al archivo SQLite
+    private $dbPath = '/home/poe/Workspace/projects/kWh-sysmax/backend/dataBases/SYSMAX-KWH.db';
     private $conn;
 
-    protected $testing;
-
-    public function __construct($myTestArg) {
+    public function __construct() {
         try {
-            if (!$myTestArg) {
-                // Conexión SQLite
-                $dsn = "sqlite:" . $this->dbPath;
-                $this->conn = new PDO($dsn);
-                $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            } else {
-                // Modo testing con datos de ejemplo
-                $this->testing = [
-                    "admon" => ["4321", 1, "Administrador"],
-                    "user" => ["123", 2, "Usuario básico"]
-                ];
-            }
+            $dsn = "sqlite:" . $this->dbPath;
+            $this->conn = new PDO($dsn);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             http_response_code(500);
             echo json_encode([
@@ -63,21 +52,38 @@ class UserSession {
     }
 }
 
-
-class QueryHandler extends Connection{
+class QueryHandler extends Connection {
     public function verifyCredentials(...$args){
-        $response = $this->testing; #change this when testing ends
-        if ( $response[$args[0]][1] == 1){
-            $r = $response['admon'][0] == $args[1] ? $response[$args[0]] : false;
-            return $r;
-        }
-        else{
-            $r = $response['user'][0] == $args[1] ? $response[$args[0]] : false;
-            return $r;
-        }
+        $result = $this->executeQuery('SELECT u.*, IFNULL(b.ID, "NO_BREAKER") AS ID_BREAKER  FROM USERS u LEFT JOIN BREAKERS b ON (b.ID_USER = u.ID) WHERE USERNAME = :username', ['username' => $args[0]]);
+        if($result[0]['USERNAME'] == $args[0] && $result[0]['PASSWORD'] == $args[1])
+            return $result;
+        else
+            return false;
     }
+    public function executeQuery($query, $params = []) {
+        try {
+            $stmt = $this->getConnection()->prepare($query);
+            $stmt->execute($params);
 
-    protected function executeQuery(){
+            $queryType = strtoupper(strtok(trim($query), " "));
 
+            if ($queryType === 'SELECT') {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } elseif (in_array($queryType, ['INSERT', 'UPDATE', 'DELETE'])) {
+                return [
+                    'rowCount' => $stmt->rowCount(), // cuántas filas fueron afectadas
+                    'lastInsertId' => $this->getConnection()->lastInsertId()
+                ];
+            } else {
+                return ['status' => 'ok'];
+            }
+        } catch (PDOException $e) {
+            http_response_code(500);
+            echo json_encode([
+                "success" => false,
+                "error" => "Error en consulta: " . $e->getMessage()
+            ]);
+            exit;
+        }
     }
 }

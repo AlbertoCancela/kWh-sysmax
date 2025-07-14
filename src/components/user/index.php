@@ -33,7 +33,7 @@
             </div>                                 
             <div class="box-reading">
               <h3 class="reading-title">Temperatura</h3>
-              <i class='bx bxs-thermometer bx-lg' style='color:#3c3c3c'  ></i>
+              <i class='bx bxs-thermometer bx-lg' style='color:#3c3c3c'></i>
               <p class="reading-txt">
                     <?php echo $tempCurrent['value'] . '°C' ?>
               </p>

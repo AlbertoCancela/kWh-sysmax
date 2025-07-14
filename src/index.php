@@ -5,6 +5,7 @@
       header("Location: /src/login.php");
       exit;
   }
+  // echo $_SESSION['data']['userBreaker'];
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">
@@ -41,11 +42,23 @@
       </main>
       <?php include_once 'components/general/footer.php'?>  
     </div>
-        <script src="public/js/startSetUp.js"></script>
   </body>
-  <script src="../public/js/dataTable.js"></script>
+  <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] == 1): ?>
+    <script type="module" src="../public/js/dataTable.js"></script>
+  <?php endif; ?>
   <script type="module">
-    import { closeSession } from "../public/js/general.js";
+    import { closeSession, getSingleBreakerData } from "../public/js/general.js";
     window.closeSession = closeSession;
+    <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] != 1): ?>
+      document.addEventListener("DOMContentLoaded", async function(){
+        const DATABREAKER = document.querySelector('#singleDataDashboard')
+        const BREAKER_ID = DATABREAKER.getAttribute('breakerData')
+        const RESPONSE = await getSingleBreakerData(BREAKER_ID)
+        
+        document.querySelector('.breakerDashboard-showConsumption').textContent = `${RESPONSE.total_forward_energy} kWh`;
+        document.querySelector('.breakerDashboard-showStatus').textContent = RESPONSE.switch ? 'Encendido' : 'Apagado';
+        document.querySelector('.breakerDashboard-showTemp').textContent = `${RESPONSE.temp_current} °C`;
+      })
+    <?php endif; ?>
   </script>
 </html>
