@@ -8,6 +8,7 @@
         <th>NOMBRE_MEDIDOR</th>
         <th>CONSUMO</th>
         <th>TEMPERATURA</th>
+        <th>FECHA DE REGISTRO</th>
         <th>PROPIETARIO</th>
         <th>DETALLES</th>
       </tr>

@@ -9,17 +9,26 @@ $queries = [
     'safr' => "SELECT * FROM RECORDS",
     'safrW-rId' => "SELECT * FROM RECORDS WHERE ID = :id",
     'safrW-bId' => "SELECT * FROM RECORDS WHERE ID_BREAKER = :id_breaker",
-    'ssfb' =>"SELECT b.ID, b.DEVICE_NAME AS NAME, SUM(r.KWH) as CONSUMPTION,
-            (
-                SELECT rr.TEMP
-                FROM RECORDS rr
-                WHERE rr.ID_BREAKER = b.ID
-                ORDER BY rr.RECORD_DATE DESC
-                LIMIT 1
-            ) AS LAST_TEMP, u.USERNAME as PROPERTY FROM BREAKERS b 
-            JOIN RECORDS r ON (b.ID = r.ID_BREAKER)
-            JOIN USERS u ON (b.ID_USER = u.ID)
-            GROUP BY b.ID"
+    'ssfb' =>"SELECT 
+                    b.ID, 
+                    b.DEVICE_NAME AS NAME, 
+                    rr.KWH AS CONSUMPTION,
+                    rr.TEMP AS LAST_TEMP,
+                    rr.RECORD_DATE AS RECORD_DATE,
+                    u.USERNAME AS PROPERTY
+                FROM BREAKERS b
+                JOIN USERS u ON b.ID_USER = u.ID
+                LEFT JOIN (
+                    SELECT r1.*
+                    FROM RECORDS r1
+                    WHERE r1.ROWID IN (
+                        SELECT ROWID
+                        FROM RECORDS r2
+                        WHERE r2.ID_BREAKER = r1.ID_BREAKER
+                        ORDER BY r2.RECORD_DATE DESC
+                        LIMIT 1
+                    )
+                ) rr ON rr.ID_BREAKER = b.ID"
 ];
 
 switch ($_SERVER['REQUEST_METHOD']) {

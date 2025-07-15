@@ -12,6 +12,7 @@ async function fetchDataFromBackend() {
     name: item.NAME,
     consumo: item.CONSUMPTION + ' kWh',
     temperatura: item.LAST_TEMP + '°C',
+    fechaRegistro: item.RECORD_DATE,
     propietario: item.PROPERTY,
     idBreaker: item.ID
   }));
@@ -33,6 +34,7 @@ function renderTable(page) {
       <td>${item.name}</td>
       <td>${item.consumo}</td>
       <td>${item.temperatura}</td>
+      <td>${item.fechaRegistro}</td>
       <td>${item.propietario}</td>
       <td>
         <button class="dashboard-showDetails" IdBreaker="${item.idBreaker}">
