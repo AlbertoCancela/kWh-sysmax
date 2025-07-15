@@ -10,7 +10,7 @@ async function fetchDataFromBackend() {
   data = response.breakers.map((item, index) => ({
     id: item.ID,
     name: item.NAME,
-    consumo: item.CONSUMPTION + ' kWh',
+    consumo: (item.CONSUMPTION)/100 + ' kWh',
     temperatura: item.LAST_TEMP + '°C',
     fechaRegistro: item.RECORD_DATE,
     propietario: item.PROPERTY,
