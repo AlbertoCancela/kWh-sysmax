@@ -1,7 +1,7 @@
 <?php
 
 class Connection {
-    private $dbPath = '/home/poe/Workspace/projects/kWh-sysmax/backend/dataBases/SYSMAX-KWH.db';
+    private $dbPath = __DIR__ . '/../dataBases/SYSMAX-KWH.db';
     private $conn;
 
     public function __construct() {
