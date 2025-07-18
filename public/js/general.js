@@ -19,7 +19,7 @@ export function closeSession(){
 }
 
 export async function getSingleBreakerData( $breakerId ){
-    const FETCHER = new PHPFetcher('backend/tuyaApi/')
+    const FETCHER = new PHPFetcher('/backend/tuyaApi/')
     const RESPONSE = await FETCHER.fetchData('tuyaGetSingleBreaker.php', { deviceId: $breakerId }, 'POST')
     return RESPONSE;
 }
