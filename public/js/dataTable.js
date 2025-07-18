@@ -5,7 +5,7 @@ let currentPage = 1;
 let data = [];
 
 async function fetchDataFromBackend() {
-  const myVariable = new PHPFetcher('backend/controller/');
+  const myVariable = new PHPFetcher('/backend/controller/');
   const response = await myVariable.fetchData('breakers.php', { query: 'ssfb' }, 'POST');
   data = response.breakers.map((item, index) => ({
     id: item.ID,
