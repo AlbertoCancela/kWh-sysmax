@@ -21,24 +21,24 @@
     text-align: center;
 }
 
-.table-section {
+.table-section {    
     place-items: center;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     height: auto;
-    padding: 50px 30px;
+    padding: 30px 20px;
     margin: auto;
+    overflow-x: auto;
 }
 
-#table-breakerDisplay {
+#table-breakerDisplay {    
     background-color: var(--top-bar_color);
-    width: 100%;
+    width: 90%;
     text-align: left;    
     border-collapse: collapse;
     font-family: var(--text-font);
     font-size: .88em;
-    margin-bottom: 30px;
-    overflow-y: auto;
+    margin-bottom: 30px;    
 }
 
 th, td {
