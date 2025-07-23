@@ -22,8 +22,19 @@ class TuyaController {
 
     protected function saveRecord($id_breaker, $deviceData) {
         $stmt = $this->db->prepare("
-            INSERT INTO RECORDS (ID_BREAKER, KWH, TEMP)
-            VALUES (:id_breaker, :kwh, :temp)
+            INSERT INTO RECORDS (ID_BREAKER, KWH, TEMP, KWH_AT_CT)
+            VALUES (
+                :id_breaker,
+                :kwh - COALESCE((
+                    SELECT KWH_AT_CT
+                    FROM RECORDS
+                    WHERE ID_BREAKER = :id_breaker
+                    ORDER BY RECORD_DATE DESC
+                    LIMIT 1
+                ), 0),
+                :temp,
+                :kwh
+            );
         ");
 
         $stmt->execute([

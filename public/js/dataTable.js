@@ -37,7 +37,7 @@ function renderTable(page) {
       <td>${item.fechaRegistro}</td>
       <td>${item.propietario}</td>
       <td>
-        <button class="dashboard-showDetails" IdBreaker="${item.idBreaker}">
+        <button onclick="abrirModal(this)" class="dashboard-showDetails" IdBreaker="${item.idBreaker}">
           <i class='bx bxs-show bx-md'></i>
         </button>
       </td>

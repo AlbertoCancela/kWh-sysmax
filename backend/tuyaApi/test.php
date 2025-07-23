@@ -7,7 +7,7 @@ $conexion = new Connection(false); // false = conexión real, no modo testing
 $db = $conexion->getConnection();
 
 if ($db instanceof PDO) {
-    echo "✅ Conexión exitosa a SQLite.";
+    echo "Conexión exitosa a SQLite.";
 } else {
-    echo "❌ No se pudo conectar.";
+    echo "No se pudo conectar.";
 }

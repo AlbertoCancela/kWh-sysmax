@@ -25,6 +25,7 @@
   <link rel="shortcut icon" href="../public/img/sysmax_logo64.png" type="image/png">
   <link rel="stylesheet" href="../public/css/styles.css">
   <link rel="stylesheet" href="../public/css/dataTable.css">
+  <link rel="stylesheet" href="../public/css/modal.css">
   <link href='../public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
   <title>Sysmax Tecnología S.A. de C.V.</title>
 </head>
@@ -42,6 +43,7 @@
         <?php 
         if($_SESSION['permissions'] == '1'){
           include_once "components/admon/breakersDashboard.php";
+          include_once "components/admon/modal.php";
         }else{
           include_once "components/general/singleBreakerData.php";
         }
@@ -50,6 +52,7 @@
       <?php include_once 'components/general/footer.php'?>  
     </div>
   </body>
+  <script type="module" src="../public/js/modal.js"></script>
   <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] == 1): ?>
     <script type="module" src="../public/js/dataTable.js"></script>
   <?php endif; ?>
@@ -62,10 +65,13 @@
         const BREAKER_ID = DATABREAKER.getAttribute('breakerData')
         const RESPONSE = await getSingleBreakerData(BREAKER_ID)
         
-        document.querySelector('.breakerDashboard-showConsumption').textContent = `${RESPONSE.total_forward_energy} kWh`;
+        document.querySelector('.breakerDashboard-showConsumption').textContent = `${(RESPONSE.total_forward_energy)/100} kWh`;
         document.querySelector('.breakerDashboard-showStatus').textContent = RESPONSE.switch ? 'Encendido' : 'Apagado';
         document.querySelector('.breakerDashboard-showTemp').textContent = `${RESPONSE.temp_current} °C`;
       })
     <?php endif; ?>
   </script>
+  <!-- <script>
+    abrirModal();
+  </script> -->
 </html>

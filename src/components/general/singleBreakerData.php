@@ -8,7 +8,7 @@
       </p>           
     </div>                                         
     <div class="box-reading">
-      <h3 class="reading-title"> Estado On / Off</h3>
+      <p class="reading-title"> Estado On / Off</p>
       <i class='bx bx-power-off bx-md' style='color:#3c3c3c'  ></i>
       <p class=" reading-txt breakerDashboard-showStatus">
         <span class="loader">Obteniendo...</span>
