@@ -43,7 +43,7 @@
       <?php include_once 'components/general/footer.php'?>  
     </div>
   </body>
-  <script type="module" src="../public/js/modal.js"></script>
+  <script type="module" src="/public/js/modal.js"></script>
   <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] == 1): ?>
     <script type="module" src="../public/js/dataTable.js"></script>
   <?php endif; ?>
