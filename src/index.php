@@ -14,20 +14,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="../public/img/sysmax_logo64.png" type="image/png">
   <link rel="stylesheet" href="../public/css/styles.css">
-  <link href='../public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
-  <title>Sysmax Tecnología S.A. de C.V.</title>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="../public/img/sysmax_logo64.png" type="image/png">
-  <link rel="stylesheet" href="../public/css/styles.css">
   <link rel="stylesheet" href="../public/css/dataTable.css">
   <link rel="stylesheet" href="../public/css/modal.css">
   <link href='../public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <title>Sysmax Tecnología S.A. de C.V.</title>
 </head>
   <body>    
