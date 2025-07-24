@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../public/css/styles.css">
   <link href='../public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
   <title>Sysmax Tecnología S.A. de C.V.</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <!DOCTYPE html>
 <html lang="es-MX">

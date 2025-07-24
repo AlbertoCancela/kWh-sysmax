@@ -32,8 +32,8 @@ try {
         }
         $i++;
     }
-    // echo json_encode($breakersData, JSON_PRETTY_PRINT);
-    $tuyaController->dataProcessing($breakersData);
+    echo json_encode($breakersData, JSON_PRETTY_PRINT);
+    // $tuyaController->dataProcessing($breakersData);
     
 } catch (Exception $e) {
     echo 'Error: ' . $e->getMessage();

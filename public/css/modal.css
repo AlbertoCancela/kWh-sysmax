@@ -21,7 +21,7 @@
 .modal-content {
     background-color: var(--borderbottom-color);
     padding: 20px;
-    width: 30%;
+    width: 32%;
     border-radius: 10px;
     transform: scale(0.9);
     opacity: 0;

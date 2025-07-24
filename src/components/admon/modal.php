@@ -5,17 +5,17 @@
         <!-- <span class="close-btn" onclick="cerrarModal()">&times;</span> -->
         <section class="modal-data">
             <div class="modal-section title">
-                <h2>Data - Breaker Secundario</h2>
-                <h4>174fbb4213ojkk13978</h4>
+                <h2 id="modal-data-breakerName">Data</h2>
+                <h4 id="modal-data-breakerId">...</h4>
             </div>
             <hr>
             <div class="modal-section data">
                 <div class="reference-data">
                     <p class="reference-data-text">Usuario: 
-                        <i id="modal-data-user" class="modal-fetch-data">Usuario1</i>
+                        <i id="modal-data-user" class="modal-fetch-data">...</i>
                     </p>
                     <p class="reference-data-text">Departamento: 
-                        <i id="modal-data-department" class="modal-fetch-data">A12-2</i>
+                        <i id="modal-data-department" class="modal-fetch-data">...</i>
                     </p>
                 </div>
                 <div class="main-data">
@@ -50,6 +50,10 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td colspan="3">Consultando datos, espere un momento...</td>
+                        </tr>
+
+                        <!-- <tr>
                             <td>5.15kwh</td>
                             <td>17°C</td>
                             <td>2025-07-22 22:25:02</td>
@@ -72,7 +76,6 @@
                             <td>17°C</td>
                             <td>2025-07-22 22:25:02</td>
                         </tr>
-
                         <tr>
                             <td>5.15kwh</td>
                             <td>17°C</td>
@@ -82,12 +85,7 @@
                             <td>5.15kwh</td>
                             <td>17°C</td>
                             <td>2025-07-22 22:25:02</td>
-                        </tr>
-                        <tr>
-                            <td>5.15kwh</td>
-                            <td>17°C</td>
-                            <td>2025-07-22 22:25:02</td>
-                        </tr>
+                        </tr> -->
                         
                     </tbody>
                 </table>

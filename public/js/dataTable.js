@@ -6,7 +6,7 @@ let data = [];
 
 async function fetchDataFromBackend() {
   const myVariable = new PHPFetcher('../backend/controller/');
-  const response = await myVariable.fetchData('breakers.php', { query: 'ssfb' }, 'POST');
+  const response = await myVariable.fetchData('breakers.php', { query: 'ssfb', action: 'getAllBreakersD'}, 'POST');
   data = response.breakers.map((item, index) => ({
     id: item.ID,
     name: item.NAME,

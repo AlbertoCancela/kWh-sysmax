@@ -28,26 +28,56 @@ $queries = [
                         ORDER BY r2.RECORD_DATE DESC
                         LIMIT 1
                     )
-                ) rr ON rr.ID_BREAKER = b.ID"
+                ) rr ON rr.ID_BREAKER = b.ID",
+    'safrW-bIdL7' => "SELECT * FROM RECORDS
+                        WHERE ID_BREAKER = :id_breaker 
+                        ORDER BY RECORD_DATE DESC, ID DESC 
+                        LIMIT 7",
+    'ssfbW-bId' => "SELECT 
+                        b.ID, b.DEVICE_NAME, 
+                        u.USERNAME, 
+                        d.DEPARTMENT_CODE 
+                    FROM BREAKERS b 
+                    JOIN USERS u ON (u.ID = b.ID_USER) 
+                    JOIN DEPARTMENTS d ON (d.ID = u.ID_DEPARTMENT)
+                    WHERE b.ID = :id_breaker"
+    
 ];
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST': #to get some data
-        $query = $queries[$data['query']];
-        $params = $data['params'] ?? [];
-        $permitidos = ['id_breaker', 'id', 'date', 'temp', 'kwh'];
-        foreach ($params as $key => $value) {
-            if (in_array($key, $permitidos)) {
-                $$key = $value;
-            } else {
-                unset($params[$key]);
-            }
+        switch( $data['action'] ){
+            case 'getAllBreakersD':
+                $query = $queries[$data['query']];
+                $params = $data['params'] ?? [];
+                $permitidos = ['id_breaker', 'id', 'date', 'temp', 'kwh'];
+                foreach ($params as $key => $value) {
+                    if (in_array($key, $permitidos)) {
+                        $$key = $value;
+                    } else {
+                        unset($params[$key]);
+                    }
+                }
+                $result = $DB->executeQuery($query, $params);
+                echo json_encode([
+                    'status' => 'ok',
+                    'breakers' => $result
+                ]);
+                break;
+            case 'getSingleBreakerD':
+                $query = $queries[$data['query']];
+                $query2 = $queries[$data['query2']];
+                $params = $data['params'] ?? [];
+
+                $result = $DB->executeQuery($query, $params);
+                $result2 = $DB->executeQuery($query2, $params);
+                echo json_encode([
+                    'status' => 'ok',
+                    'records' => $result,
+                    'breakerData' => $result2
+                ]);
+                break;
         }
-        $result = $DB->executeQuery($query, $params);
-        echo json_encode([
-            'status' => 'ok',
-            'breakers' => $result
-        ]);
 
         break;
     case 'PUT': #to update data
