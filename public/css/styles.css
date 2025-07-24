@@ -342,10 +342,6 @@
 }
 
 @media (min-width: 426px) and (max-width: 768px) {
-  .sysmax-hero { 
-    height: 300px;  
-    background-position: center;  
-  }
 
   .container {
     padding: 0;

@@ -21,17 +21,17 @@
                 <div class="main-data">
                     <div class="main-data-TKS">
                         <h3>Temp</h3>
-                        <i class='bx bxs-thermometer bx-lg'></i>
+                        <i class='bx bxs-thermometer bx-md'></i>
                         <b id="modal-data-temp" class="modal-fetch-data">...</b>
                     </div>
                     <div class="main-data-TKS">
                         <h3>kWh</h3>
-                        <i class='bx bx-tachometer bx-lg'></i>
+                        <i class='bx bx-tachometer bx-md'></i>
                         <b id="modal-data-kwh" class="modal-fetch-data">...</b>
                     </div>
                     <div class="main-data-TKS">
                         <h3>Estado</h3>
-                        <i class='bx bx-power-off bx-lg'></i>
+                        <i class='bx bx-power-off bx-md'></i>
                         <div id="statusContainer" class="status-toggle">
                             <label class="switch">
                                 <input type="checkbox" id="breakerToggle">
