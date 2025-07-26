@@ -44,12 +44,12 @@
       <?php include_once 'components/general/footer.php'?>  
     </div>
   </body>
-  <script type="module" src="<?= $BASE?>/public/js/modal.js"></script>
+  <script type="module" src="/kWh-sysmax/public/js/modal.js"></script>
   <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] == 1): ?>
-    <script type="module" src="<?= $BASE?>/public/js/dataTable.js"></script>
+    <script type="module" src="/kWh-sysmax/public/js/dataTable.js"></script>
   <?php endif; ?>
   <script type="module">
-    import { closeSession, getSingleBreakerData } from "<?= $BASE?>/public/js/general.js";
+    import { closeSession, getSingleBreakerData } from "/kWh-sysmax/public/js/general.js";
     window.closeSession = closeSession;
     <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] != 1): ?>
       document.addEventListener("DOMContentLoaded", async function(){
