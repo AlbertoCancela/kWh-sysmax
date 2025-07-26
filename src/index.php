@@ -2,11 +2,10 @@
   session_name('sysmax-tuya');
   session_start();
   if (!isset($_SESSION['userName'])) {
-      header("Location: /src/login.php");
+      header("Location: login.php");
       exit;
   }
   // echo $_SESSION['data']['userBreaker'];
-  $BASE = "/kWh-sysmax";
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">

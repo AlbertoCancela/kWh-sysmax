@@ -3,7 +3,7 @@ session_name('sysmax-tuya');
 session_start();
 
 if (isset($_SESSION['userName'])) {
-    header("Location: /src");
+    header("Location: index.php");
     exit;
 }
 ?>
