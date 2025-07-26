@@ -45,7 +45,7 @@
                 <table class="modal-table_records">
                     <thead>
                         <th>Consumo (kWh)</th>
-                        <th>Temperatura</th>
+                        <th>Temperatura (°C)</th>
                         <th>Fecha de registro</th>
                     </thead>
                     <tbody>
