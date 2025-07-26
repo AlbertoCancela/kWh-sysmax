@@ -1,4 +1,4 @@
-import { getSingleBreakerData, getSingleBreakerRecords, switchBreakerStatus } from "../public/js/general.js";
+import { getSingleBreakerData, getSingleBreakerRecords, switchBreakerStatus } from "/kWh-sysmax/public/js/general.js";
 
 const modal = document.getElementById('miModal');
 const toggle = document.getElementById('breakerToggle');
@@ -28,7 +28,7 @@ function fillModalBreakerData(breakerRecords, breakerData){
 
     var tdArr = '';
     breakerRecords.forEach( record => {
-        tdArr += `<tr><td>${record['KWH']/100} kWh</td><td>${record['TEMP']}</td><td>${record['RECORD_DATE']}</td></tr>` 
+        tdArr += `<tr><td>${record['KWH']}</td><td>${record['TEMP']}</td><td>${record['RECORD_DATE']}</td></tr>` 
     })
     TABLE.querySelector('tbody').innerHTML = tdArr;
 }
