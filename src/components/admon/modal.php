@@ -44,7 +44,7 @@
             <div class="modal-section records">
                 <table class="modal-table_records">
                     <thead>
-                        <th>Consumo</th>
+                        <th>Consumo (kWh)</th>
                         <th>Temperatura</th>
                         <th>Fecha de registro</th>
                     </thead>

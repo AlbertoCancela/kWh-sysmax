@@ -28,7 +28,7 @@ function fillModalBreakerData(breakerRecords, breakerData){
 
     var tdArr = '';
     breakerRecords.forEach( record => {
-        tdArr += `<tr><td>${record['KWH']}</td><td>${record['TEMP']}</td><td>${record['RECORD_DATE']}</td></tr>` 
+        tdArr += `<tr><td>${record['KWH']/100}</td><td>${record['TEMP']}</td><td>${record['RECORD_DATE']}</td></tr>` 
     })
     TABLE.querySelector('tbody').innerHTML = tdArr;
 }
