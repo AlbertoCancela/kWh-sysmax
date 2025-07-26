@@ -1,4 +1,4 @@
-import { getSingleBreakerData, getSingleBreakerRecords, switchBreakerStatus } from "/../public/js/general.js";
+import { getSingleBreakerData, getSingleBreakerRecords, switchBreakerStatus } from "/kWh-sysmax/public/js/general.js";
 
 const modal = document.getElementById('miModal');
 const toggle = document.getElementById('breakerToggle');
