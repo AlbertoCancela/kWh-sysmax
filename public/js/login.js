@@ -17,7 +17,7 @@ document.getElementById('login-login').addEventListener("submit", ( event )=>{
     .then( response => {
         if(response.status == 'ok'){
             alert("sesión iniciada")
-            location.href="/kWh-sysmax/src/";
+            location.href="/src";
         }else{
             console.log(response)
             document.getElementById('spanLogin').classList.remove('hidden');

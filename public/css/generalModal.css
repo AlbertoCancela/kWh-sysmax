@@ -1,0 +1,97 @@
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.generalModal-content{
+    background-color: var(--borderbottom-color);
+    height: fit-content;
+    width: 22em;
+    padding: 1em;
+    border-radius: 6px;
+    box-shadow: 4px 4px 3px rgba(0,0,0,0.4)
+}
+
+.generalModal-mainContent{
+    width: 100%;
+    height: fit-content;
+    color: var(--txt-color);
+}
+
+.generalModal-content h2{
+    color: var(--txt-color);
+}
+
+/*For modal user Settings*/
+.generalModal-userSetting-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  margin-top: 1em;
+  color: var(--txt-color);
+  font-family: sans-serif;
+}
+
+.generalModal-userSetting-container div {
+  display: flex;
+  flex-direction: column;
+}
+
+.generalModal-userSetting-container label {
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+.generalModal-userSetting-container i {
+  font-style: normal;
+  color: var(--txt-color);
+  font-size: 1em;
+  padding: 0.3em 0.6em;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.generalModal-userSetting-container input[type="text"],
+.generalModal-userSetting-container input[type="password"]{
+  padding: 0.5em 0.75em;
+  font-size: 0.95em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #000;
+  transition: border-color 0.2s ease;
+}
+
+.generalModal-userSetting-container input[type="text"]:focus, 
+.generalModal-userSetting-container input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+#generalModal-button{
+    height: 3em;
+    background-color: var(--title-color);
+    color: var(--txt-color);
+    transition: 0.3s;
+    border-radius: 6px;
+}
+#generalModal-button:hover{
+    background-color: var(--sysmax-electric_green);
+    color: var(--title-color);
+    cursor: pointer;
+    transition: 0.3s;
+}

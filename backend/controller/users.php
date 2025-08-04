@@ -6,7 +6,10 @@ $data = json_decode(file_get_contents("php://input"), true);
 $DB = new QueryHandler();
 
 $queries = [
-    'safu' => 'SELECT * FROM USERS'
+    'safu' => "SELECT * FROM USERS",
+    'ufu-un' => "UPDATE USERS SET USERNAME = :username WHERE ID = :id",
+    'safuW-pw' => "SELECT * FROM USERS WHERE USERNAME = :username AND PASSWORD = :password",
+    'ufu-up' => "UPDATE USERS SET PASSWORD = :password WHERE USERNAME = :username"
 ];
 
 switch ($_SERVER['REQUEST_METHOD']) {
@@ -28,7 +31,25 @@ switch ($_SERVER['REQUEST_METHOD']) {
         ]);
         break;
     case 'PUT':
-        # code...
+        // echo json_encode(['status' => 'ok']);
+        $query = $queries[$data['query']];
+        switch( $data['action'] ){
+            case 'changeUserName':
+                $params = $data['params'] ?? [];
+                $result = $DB->executeQuery($query, $params);
+                echo json_encode(['status' => 'ok', 'result' => $result]);
+                break;
+            case 'verifyPassword':
+                $params = $data['params'] ?? [];
+                $result = $DB->executeQuery($query, $params);
+                echo json_encode(['status' => 'ok', 'result' => $result]);
+                break;
+            case 'changePassword':
+                $params = $data['params'] ?? [];
+                $result = $DB->executeQuery($query, $params);
+                echo json_encode(['status' => 'ok', 'result' => $result]);
+                break;
+        }
         break;
     case 'DELETE':
         # code...

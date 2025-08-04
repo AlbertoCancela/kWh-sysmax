@@ -2,7 +2,7 @@
   session_name('sysmax-tuya');
   session_start();
   if (!isset($_SESSION['userName'])) {
-      header("Location: login.php");
+      header("Location: /src/login.php");
       exit;
   }
   // echo $_SESSION['data']['userBreaker'];
@@ -43,12 +43,12 @@
       <?php include_once 'components/general/footer.php'?>  
     </div>
   </body>
-  <script type="module" src="/kWh-sysmax/public/js/modal.js"></script>
+  <script type="module" src="../public/js/modal.js"></script>
   <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] == 1): ?>
-    <script type="module" src="/kWh-sysmax/public/js/dataTable.js"></script>
+    <script type="module" src="../public/js/dataTable.js"></script>
   <?php endif; ?>
   <script type="module">
-    import { closeSession, getSingleBreakerData } from "/kWh-sysmax/public/js/general.js";
+    import { closeSession, getSingleBreakerData } from "../public/js/general.js";
     window.closeSession = closeSession;
     <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] != 1): ?>
       document.addEventListener("DOMContentLoaded", async function(){
