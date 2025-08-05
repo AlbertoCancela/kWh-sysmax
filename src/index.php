@@ -2,7 +2,7 @@
   session_name('sysmax-tuya');
   session_start();
   if (!isset($_SESSION['userName'])) {
-      header("Location: /src/login.php");
+      header("Location: /kWh-sysmax/src/login.php");
       exit;
   }
   // echo $_SESSION['data']['userBreaker'];
@@ -12,11 +12,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="../public/img/sysmax_logo64.png" type="image/png">
-  <link rel="stylesheet" href="../public/css/styles.css">
-  <link rel="stylesheet" href="../public/css/dataTable.css">
-  <link rel="stylesheet" href="../public/css/modal.css">
-  <link href='../public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="shortcut icon" href="/kWh-sysmax/public/img/sysmax_logo64.png" type="image/png">
+  <link rel="stylesheet" href="/kWh-sysmax/public/css/styles.css">
+  <link rel="stylesheet" href="/kWh-sysmax/public/css/dataTable.css">
+  <link rel="stylesheet" href="/kWh-sysmax/public/css/modal.css">
+  <link href='/kWh-sysmax/public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <title>Sysmax Tecnología S.A. de C.V.</title>
 </head>
@@ -43,12 +43,12 @@
       <?php include_once 'components/general/footer.php'?>  
     </div>
   </body>
-  <script type="module" src="../public/js/modal.js"></script>
+  <script type="module" src="/kWh-sysmax/public/js/modal.js"></script>
   <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] == 1): ?>
-    <script type="module" src="../public/js/dataTable.js"></script>
+    <script type="module" src="/kWh-sysmax/public/js/dataTable.js"></script>
   <?php endif; ?>
   <script type="module">
-    import { closeSession, getSingleBreakerData } from "../public/js/general.js";
+    import { closeSession, getSingleBreakerData } from "/kWh-sysmax/public/js/general.js";
     window.closeSession = closeSession;
     <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] != 1): ?>
       document.addEventListener("DOMContentLoaded", async function(){
