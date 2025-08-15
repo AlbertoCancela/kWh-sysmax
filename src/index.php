@@ -5,7 +5,7 @@
       header("Location: /kWh-sysmax/src/login.php");
       exit;
   }
-  // echo $_SESSION['data']['userBreaker'];
+  // echo $_SESSION['data']['department'];
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">
@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/kWh-sysmax/public/css/styles.css">
   <link rel="stylesheet" href="/kWh-sysmax/public/css/dataTable.css">
   <link rel="stylesheet" href="/kWh-sysmax/public/css/modal.css">
+  <link rel="stylesheet" href="/kWh-sysmax/public/css/generalModal.css">
   <link href='/kWh-sysmax/public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <title>Sysmax Tecnología S.A. de C.V.</title>
@@ -37,16 +38,19 @@
           include_once "components/admon/modal.php";
         }else{
           include_once "components/general/singleBreakerData.php";
+          include_once "components/general/generalModal.php";
+
         }
         ?>
       </main>
       <?php include_once 'components/general/footer.php'?>  
     </div>
   </body>
-  <script type="module" src="/kWh-sysmax/public/js/modal.js"></script>
   <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] == 1): ?>
-    <script type="module" src="/kWh-sysmax/public/js/dataTable.js"></script>
-  <?php endif; ?>
+    <script type="module" src="/kWh-sysmax/public/js/modal.js"></script>
+    <script type="module" src="/kWh-sysmax/public/js/DT-admonDashboard.js"></script>
+    <?php endif; ?>
+    <script src="/kWh-sysmax/public/js/generalModal.js"></script>
   <script type="module">
     import { closeSession, getSingleBreakerData } from "/kWh-sysmax/public/js/general.js";
     window.closeSession = closeSession;

@@ -9,8 +9,20 @@ $queries = [
     'safr' => "SELECT * FROM RECORDS",
     'safrW-rId' => "SELECT * FROM RECORDS WHERE ID = :id",
     'safrW-bId' => "SELECT * FROM RECORDS WHERE ID_BREAKER = :id_breaker",
+    'ssfrjo' => "SELECT 
+                    r.ID_BREAKER as ID, 
+                    d.DEPARTMENT_CODE,
+                    r.TEMP AS LAST_TEMP, 
+                    r.KWH AS CONSUMPTION, 
+                    u.USERNAME AS PROPERTY,
+                    r.RECORD_DATE 
+                FROM RECORDS r 
+                    JOIN BREAKERS    b ON b.ID = r.ID_BREAKER
+                    JOIN USERS       u ON u.ID = b.ID_USER
+                    JOIN DEPARTMENTS d ON d.ID = u.ID_DEPARTMENT",
     'ssfb' =>"SELECT 
-                    b.ID, 
+                    b.ID,
+                    d.DEPARTMENT_CODE, 
                     b.DEVICE_NAME AS NAME, 
                     rr.KWH AS CONSUMPTION,
                     rr.TEMP AS LAST_TEMP,
@@ -25,23 +37,24 @@ $queries = [
                         SELECT ROWID
                         FROM RECORDS r2
                         WHERE r2.ID_BREAKER = r1.ID_BREAKER
-                        ORDER BY r2.RECORD_DATE DESC
                         LIMIT 1
                     )
-                ) rr ON rr.ID_BREAKER = b.ID",
-    'safrW-bIdL7' => "SELECT * FROM RECORDS
+                ) rr ON rr.ID_BREAKER = b.ID
+                JOIN DEPARTMENTS d ON u.ID_DEPARTMENT = d.ID
+                ORDER BY rr.RECORD_DATE",
+    'safrW-bIdL7' => "SELECT * FROM RECORDS 
                         WHERE ID_BREAKER = :id_breaker 
                         ORDER BY RECORD_DATE DESC, ID DESC 
                         LIMIT 7",
     'ssfbW-bId' => "SELECT 
                         b.ID, b.DEVICE_NAME, 
-                        u.USERNAME, 
+                        u.USERNAME,
+                        u.NAME,
                         d.DEPARTMENT_CODE 
                     FROM BREAKERS b 
                     JOIN USERS u ON (u.ID = b.ID_USER) 
                     JOIN DEPARTMENTS d ON (d.ID = u.ID_DEPARTMENT)
-                    WHERE b.ID = :id_breaker"
-    
+                    WHERE b.ID = :id_breaker"  
 ];
 
 switch ($_SERVER['REQUEST_METHOD']) {
@@ -75,6 +88,24 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     'status' => 'ok',
                     'records' => $result,
                     'breakerData' => $result2
+                ]);
+                break;
+            case 'getRecordsToReport':
+                $query = $queries[$data['query']];
+                $query .= $data['addition'];
+                $params = $data['params'] ?? [];
+                $permitidos = ['id_breaker', 'id', 'date', 'temp', 'kwh'];
+                foreach ($params as $key => $value) {
+                    if (in_array($key, $permitidos)) {
+                        $$key = $value;
+                    } else {
+                        unset($params[$key]);
+                    }
+                }
+                $result = $DB->executeQuery($query, $params);
+                echo json_encode([
+                    'status' => 'ok',
+                    'breakers' => $result
                 ]);
                 break;
         }

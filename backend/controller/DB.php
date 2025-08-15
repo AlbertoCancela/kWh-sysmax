@@ -54,7 +54,10 @@ class UserSession {
 
 class QueryHandler extends Connection {
     public function verifyCredentials(...$args){
-        $result = $this->executeQuery('SELECT u.*, IFNULL(b.ID, "NO_BREAKER") AS ID_BREAKER  FROM USERS u LEFT JOIN BREAKERS b ON (b.ID_USER = u.ID) WHERE USERNAME = :username', ['username' => $args[0]]);
+        $result = $this->executeQuery('SELECT u.*, IFNULL(b.ID, "NO_BREAKER") AS ID_BREAKER, d.DEPARTMENT_CODE AS DEPARTMENT
+                                        FROM USERS u LEFT JOIN BREAKERS b ON (b.ID_USER = u.ID) 
+                                        JOIN DEPARTMENTS d ON d.ID = u.ID_DEPARTMENT
+                                        WHERE USERNAME = :username', ['username' => $args[0]]);
         if($result[0]['USERNAME'] == $args[0] && $result[0]['PASSWORD'] == $args[1])
             return $result;
         else

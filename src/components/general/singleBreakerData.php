@@ -24,5 +24,5 @@
   </div>
 </div>
 <div class="report-con">
-  <a href="#" class="btn-report">Descargar Reporte</a>          
+  <a onclick="openGeneralModal('singleReport', this)" title="Test" class="btn-report">Descargar Reporte</a>          
 </div>

@@ -67,7 +67,8 @@
 }
 
 .generalModal-userSetting-container input[type="text"],
-.generalModal-userSetting-container input[type="password"]{
+.generalModal-userSetting-container input[type="password"],
+.generalModal-userSetting-container input[type="date"]{
   padding: 0.5em 0.75em;
   font-size: 0.95em;
   border: 1px solid #ccc;

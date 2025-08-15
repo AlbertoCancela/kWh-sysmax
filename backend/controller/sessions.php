@@ -13,6 +13,8 @@ switch($data['action']){
                 $userData = $response[0]['ID_PERMISSION'] == '1' ? ['userBreaker' => 'op'] : ['userBreaker' => $response[0]['ID_BREAKER']];
                 $userData['name'] = $response[0]['NAME'];
                 $userData['id'] = $response[0]['ID'];
+                $userData['department'] = $response[0]['DEPARTMENT'];
+                $userData['email'] = $response[0]['EMAIL'];
                 $user = new UserSession($response[0]['USERNAME'],$response[0]['ID_PERMISSION'], $userData);
                 echo json_encode(['status' => 'ok']);
             }catch(error){

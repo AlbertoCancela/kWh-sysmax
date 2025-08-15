@@ -8,6 +8,7 @@
 //   echo $_SESSION['data']['id'];
   $name = $_SESSION['data']['name'];
   $id = $_SESSION['data']['id'];
+  $email = $_SESSION['data']['email'];
   $userName = $_SESSION['userName'];
 ?>
 <!DOCTYPE html>
@@ -35,14 +36,14 @@
                         <p class="settings-title">Información y ajuste de la cuenta</p>
                     </div>
                     <div class="settings-settings">
-                        <div class="settings-row">
+                        <div onclick="openGeneralModal('setUserSettings',this)" class="settings-row">
                             <p>Nombre</p>
-                            <p id="settings-name"><?php echo $name ?></p>
-                            <p></p>
+                            <p id="settings-name" modalType="simplechange" pa-name="<?php echo $name ?>"><?php echo $name ?></p>
+                            <p><i class='bx bxs-chevron-right bx-md'></i></p>
                         </div>
                         <div onclick="openGeneralModal('setUserSettings',this)" class="settings-row">
                             <p>Nombre de usuario</p>
-                            <p id="settings-userName" modalType="username" 
+                            <p id="settings-userName" modalType="simplechange" 
                                 pa-userName="<?php echo $userName ?>" 
                                 pa-id = "<?php echo $id ?>">
                                 <?php echo $userName ?>
@@ -54,10 +55,10 @@
                             <p id="settings-password" modalType="password">******</p>
                             <p><i class='bx bxs-chevron-right bx-md'></i></p>
                         </div>
-                        <div class="settings-row">
-                            <p>Departamento</p>
-                            <p id="settings-department">a01204</p>
-                            <p></p>
+                        <div onclick="openGeneralModal('setUserSettings',this)" class="settings-row">
+                            <p>Email</p>
+                            <p id="settings-email" modalType="simplechange" pa-email="<?php echo $email ?>"><?php echo $email ?></p>
+                            <p><i class='bx bxs-chevron-right bx-md'></i></p>
                         </div>
                     </div>
                 </div>
@@ -65,12 +66,15 @@
       </main>
     </div>
     <script type="module">
-        import { closeSession, getSingleBreakerData, changeUserName, verifyPassword, changePassword } from "/kWh-sysmax/public/js/general.js";
+        import { closeSession, getSingleBreakerData, changeUserName, verifyPassword, changePassword, changeName, changeEmail } from "/kWh-sysmax/public/js/general.js";
         window.closeSession = closeSession;
         window.changeUserName = changeUserName;
         window.verifyPassword = verifyPassword;
         window.changePassword = changePassword;
+        window.changeName = changeName;
+        window.changeEmail = changeEmail;
     </script>
     <script src="/kWh-sysmax/public/js/generalModal.js"></script>
+    <script src="/kWh-sysmax/public/js/userSettings.js"></script>
   </body>
 </html>

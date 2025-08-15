@@ -3,7 +3,7 @@
   <table id="table-breakerDisplay">
     <thead>
       <tr>
-        <th>ID_MEDIDOR</th>
+        <th>DEPTO</th>
         <th>NOMBRE_MEDIDOR</th>
         <th>CONSUMO</th>
         <th>TEMPERATURA</th>

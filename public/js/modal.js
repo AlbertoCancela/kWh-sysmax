@@ -23,7 +23,7 @@ function fillModalBreakerData(breakerRecords, breakerData){
 
     BREAKERNAME.textContent = breakerData['DEVICE_NAME']
     BREAKERID.textContent = breakerData['ID']
-    USER.textContent = breakerData['USERNAME']
+    USER.textContent = breakerData['NAME']
     DEPARTMENT.textContent = breakerData['DEPARTMENT_CODE']
 
     var tdArr = '';

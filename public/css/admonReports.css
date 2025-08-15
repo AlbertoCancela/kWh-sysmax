@@ -22,28 +22,213 @@
 .admon-reports-mainContainer section{
     background-color: var(--top-bar_color1);
 }
-#admon-reports-section1{
+.admon-reports-section1{
     flex: 3;
     display: flex;
     flex-direction: column;
 }
-#admon-reports-section1 div:nth-child(1){
+.filters{
     background-color: var(--sysmax-noctisGray);
-    flex: 1;
-}
-#admon-reports-section1 div:nth-child(2){
-    flex: 5;
+    height: 12em;
 }
 
-#admon-reports-section2{
+.admon-reports-section2{
     flex: 1;
     display: flex;
     flex-direction: column;
 }
-#admon-reports-section2 div:nth-child(1){
+.ars-title{
     background-color: var(--sysmax-noctisGray);
+    color: var(--sysmax-electric_green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1;
 }
-#admon-reports-section2 div:nth-child(2){
+.pressetsAndConvertions{
     flex: 10;
+    display: flex;
+    flex-direction: column;
+}
+
+.presets {
+    /* border: 2px dashed red; */
+    flex: 2;
+    padding: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.convertTo{
+    flex: 1;
+    /* border: 2px dashed blue; */
+
+}
+
+.preset{
+    background-color: var(--sysmax-noctisGray);
+    flex: 1;
+    color: var(--top-bar_color1);
+    text-align: center;
+    padding: 0.9em;
+    font-size: 1.4em;
+}
+
+.filters {
+  display: flex;
+  gap: .45rem;
+  padding: .45rem .55rem;
+  background: var(--sysmax-noctisGray);
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 6px;
+}
+
+.filterSection {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  padding: .35rem .5rem;
+  border-radius: 3px;
+  flex: 1 1 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.filter-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: .98rem;
+  color: var(--sysmax-electric_green);
+  margin-bottom: .15rem;
+  line-height: 1.1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: .12rem;
+}
+
+label {
+  font-size: .88rem;
+  font-weight: 600;
+  line-height: 1.05;
+  color: #ddd;
+}
+
+input[type="date"],
+input[type="text"],
+select {
+  width: 100%;
+  min-width: 0;
+  padding: .3rem .45rem;
+  font-size: .88rem;
+  border: 1px solid #bfc3c7;
+  border-radius: 3px;
+  background: #f7f7f7;
+  color: #111;
+  outline: none;
+  transition: border-color .15s ease;
+}
+
+input:focus,
+select:focus {
+  border: 0.2em solid var(--sysmax-blue1);
+}
+
+.filterSection--cta {
+  flex: 0 0 110px;
+  padding: .35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnSearch {
+  width: 100%;
+  height: 6em;
+  border-radius: 4px;
+  background: var(--sysmax-electric_green);
+  color: #111;
+  font-weight: 700;
+  font-size: .9rem;
+  cursor: pointer;
+  transition: filter .15s ease;
+}
+
+.btnSearch:hover {
+  filter: brightness(0.85);
+}
+
+#breakerSearchInput{
+    border: 2px solid var(--sysmax-blue2);
+}
+
+#breakerSearchInput:focus{
+    border: 2px solid var(--sysmax-noctisGray);
+}
+
+@media (max-width: 900px) {
+  .filters {
+    flex-wrap: wrap;
+  }
+  .filterSection {
+    flex: 1 1 300px;
+  }
+  .filterSection--cta {
+    flex: 1 1 160px;
+  }
+}
+
+
+/*table-reportsDisplay*/
+.admon-reports-table{
+  width: 100%;
+  height: 70%;
+  overflow: auto;
+  scroll-behavior: smooth;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.modal-table_records{
+  width: 100%;
+  /* height: 10em; */
+  border-collapse: collapse; /* opcional */
+}
+
+.modal-table_records thead {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #4a4a4a; /* color de fondo del encabezado */
+}
+
+.modal-table_records th,
+.modal-table_records td {
+  padding: 0.6em 1em;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.modal-table_records th {
+  font-weight: 600;
+  color: #ffffff; /* texto blanco en el encabezado */
+}
+
+.modal-table_records tr:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* efecto hover */
+}
+
+.modal-table_records tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.modal-table_records {
+  background-color: #e8e6e2; /* color de fondo similar al de la tabla */
+  border: 1px solid #bcbcbc; /* borde similar al de la imagen */
+  border-radius: 4px;
+}
+#pagination{
+  width: 100%;
+  text-align: center;
+  padding: 1.1em;
 }

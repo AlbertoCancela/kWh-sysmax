@@ -8,6 +8,8 @@ $DB = new QueryHandler();
 $queries = [
     'safu' => "SELECT * FROM USERS",
     'ufu-un' => "UPDATE USERS SET USERNAME = :username WHERE ID = :id",
+    'ufu-n' => "UPDATE USERS SET NAME = :name WHERE ID = :id",
+    'ufu-e' => "UPDATE USERS SET EMAIL = :email WHERE ID = :id",
     'safuW-pw' => "SELECT * FROM USERS WHERE USERNAME = :username AND PASSWORD = :password",
     'ufu-up' => "UPDATE USERS SET PASSWORD = :password WHERE USERNAME = :username"
 ];
@@ -45,6 +47,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 echo json_encode(['status' => 'ok', 'result' => $result]);
                 break;
             case 'changePassword':
+                $params = $data['params'] ?? [];
+                $result = $DB->executeQuery($query, $params);
+                echo json_encode(['status' => 'ok', 'result' => $result]);
+                break;
+            case 'changeName':
                 $params = $data['params'] ?? [];
                 $result = $DB->executeQuery($query, $params);
                 echo json_encode(['status' => 'ok', 'result' => $result]);

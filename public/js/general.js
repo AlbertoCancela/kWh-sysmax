@@ -42,6 +42,18 @@ export async function changeUserName(id, newUserName){
     return RESPONSE;
 }
 
+export async function changeName(id, newName){
+    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const RESPONSE = await FETCHER.fetchData('users.php', { query: 'ufu-n', params:{id: id, name: newName}, action: 'changeName'}, 'PUT');
+    return RESPONSE;
+}
+
+export async function changeEmail(id, newEmail) {
+    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const RESPONSE = await FETCHER.fetchData('users.php', { query: 'ufu-e', params:{id: id, email: newEmail}, action: 'changeName'}, 'PUT');
+    return RESPONSE;
+}
+
 export async function verifyPassword(username, password) {
     const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('users.php', { query: 'safuW-pw', params:{username: username, password: password}, action: 'changeUserName'}, 'PUT');
@@ -53,3 +65,4 @@ export async function changePassword(username, newPassword) {
     const RESPONSE = await FETCHER.fetchData('users.php', { query: 'ufu-up', params:{username: username, password: newPassword}, action: 'changeUserName'}, 'PUT');
     return RESPONSE;
 }
+

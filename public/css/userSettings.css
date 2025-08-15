@@ -61,8 +61,7 @@
     text-align: right;
 }
 
-.settings-row:nth-child(2):hover,
-.settings-row:nth-child(3):hover{
+.settings-row:hover{
     background-color: rgba(0,0,0,0.2);
     transition: 0.1s;
     cursor: pointer;
