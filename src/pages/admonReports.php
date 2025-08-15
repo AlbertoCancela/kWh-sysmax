@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="/kWh-sysmax/public/css/admonReports.css">
     <link href='/kWh-sysmax/public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Sysmax Tecnología S.A. de C.V.</title>
+    <title>Tu proyecto</title>
 </head>
     <body>    
         <div class="main-con">

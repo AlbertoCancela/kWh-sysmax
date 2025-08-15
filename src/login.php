@@ -17,7 +17,7 @@ if (isset($_SESSION['userName'])) {
   <link rel="stylesheet" href="../public/css/styles.css">
   <link rel="stylesheet" href="../public/css/login.css">
   <link href='../public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
-  <title>Sysmax Tecnología S.A. de C.V.</title>
+  <title>Tu proyecto</title>
 </head>
   <body class="centerItems">    
     <div class="login-box">
