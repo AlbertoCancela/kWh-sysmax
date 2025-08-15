@@ -25,13 +25,13 @@
     <div class="main-con">
       <?php include_once "components/general/header.php"?>
       <main class="sysmax-main">
-        <div class="sysmax-hero">
-          <div class="hero-con">
-            <div class="herobox">
+        <!-- <div class="sysmax-hero"> -->
+          <!-- <div class="hero-con"> -->
+            <!-- <div class="herobox">
 
-            </div>
-          </div>
-        </div>
+            </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
         <?php 
         if($_SESSION['permissions'] == '1'){
           include_once "components/admon/breakersDashboard.php";

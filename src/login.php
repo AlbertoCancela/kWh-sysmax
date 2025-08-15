@@ -21,7 +21,7 @@ if (isset($_SESSION['userName'])) {
 </head>
   <body class="centerItems">    
     <div class="login-box">
-      <img src="../public/img/sysmax_logow.png" alt="">
+      <img style="height:40%; width:40%; margin:auto;" src="../public/img/yourLogo.png" alt="">
       <form id="login-login">
         <div class="user-box">
           <input type="text" name="username" required="" value="admin">
