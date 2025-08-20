@@ -24,5 +24,5 @@
   </div>
 </div>
 <div class="report-con">
-  <a onclick="openGeneralModal('singleReport', this)" title="Test" class="btn-report">Descargar Reporte</a>          
+  <a onclick="openGeneralModal('singleReport', this)" idBreaker="<?php echo $_SESSION['data']['userBreaker'] ?>" title="Test" class="btn-report">Descargar Reporte</a>          
 </div>

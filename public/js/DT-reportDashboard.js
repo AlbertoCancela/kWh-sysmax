@@ -14,6 +14,46 @@ async function fetchDataFromBackend() {
     const response = await myVariable.fetchData('breakers.php', { query: 'ssfrjo', addition: queryAdditions,action: 'getRecordsToReport'}, 'POST');
     data = response.breakers.map((item, index) => ({
         idBreaker: item.ID,
+        departement: item.DEPARTMENT_CODE,
+        temperatura: item.LAST_TEMP,
+        consumo: (item.CONSUMPTION)/100,
+        propietario: item.PROPERTY,
+        fechaRegistro: item.RECORD_DATE,
+    }));
+
+    const rowStructure = ( item ) => `
+        <td>${item.idBreaker}</td>
+        <td>${item.departement}</td>
+        <td>${item.temperatura}</td>
+        <td>${item.consumo}</td>
+        <td>${item.propietario}</td>
+        <td>${item.fechaRegistro}</td>
+        `;
+    renderTable(currentPage, 'table-reports', rowStructure, data);
+}
+
+async function fetchDataFromPresets( data ) {  
+    const myVariable = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const preset = data.getAttribute('presetQuery');
+    let queryAdditions = '';
+    switch( preset ){
+        case 'safbsl15':
+            queryAdditions = " WHERE r.RECORD_DATE BETWEEN DATE('now', '-15 day') AND DATE('now') GROUP BY r.ID_BREAKER ORDER BY r.RECORD_DATE DESC";
+            break;
+        case 'sasbtcgb':
+            queryAdditions = " GROUP BY r.ID_BREAKER";
+            break;
+        case 'sabsgbd':
+            queryAdditions = " GROUP BY r.ID_BREAKER ORDER BY CONSUMPTION ASC";
+            break;
+        case 'sabtcy':
+            queryAdditions = " WHERE r.RECORD_DATE = DATE('now', '-1 day')";
+            break;
+    }
+
+    const response = await myVariable.fetchData('breakers.php', { query: 'ssfrjoaf', addition: queryAdditions, action: 'getRecordsToReport'}, 'POST');
+    data = response.breakers.map((item, index) => ({
+        idBreaker: item.ID,
         // id: item.ID,
         departement: item.DEPARTMENT_CODE,
         temperatura: item.LAST_TEMP,
@@ -89,7 +129,6 @@ export async function searchData(){
     renderTable(currentPage, 'table-reports', rowStructure, data);
 
 }
-window.searchData = searchData;
 
 function dateVerification(dateStart, dateEnd){
     if(!dateStart || !dateEnd){
@@ -115,6 +154,8 @@ function simpleSweetAlert(position, title, icon, text, timer){
     });
 }
 
+window.searchData = searchData;
+window.fetchDataFromPresets = fetchDataFromPresets;
 
 // Mostrar la tabla al cargar
 // renderTable(currentPage);

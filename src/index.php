@@ -51,6 +51,7 @@
     <script type="module" src="/kWh-sysmax/public/js/DT-admonDashboard.js"></script>
     <?php endif; ?>
     <script src="/kWh-sysmax/public/js/generalModal.js"></script>
+    <script type="module" src="/kWh-sysmax/public/js/singleBreakerReport.js"></script>
   <script type="module">
     import { closeSession, getSingleBreakerData } from "/kWh-sysmax/public/js/general.js";
     window.closeSession = closeSession;

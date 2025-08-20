@@ -151,13 +151,13 @@
                         </div>
                         <div class="pressetsAndConvertions">
                             <div class="presets">
-                                <div id="test" class="preset">Breakers con mayor consumo los últimos 15 días</div>
-                                <div class="preset">Consumo histórico total por cada dispositivo</div>
-                                <div class="preset">Usuarios con menor consumo total por dispositivo</div>
-                                <div class="preset">Consumo kWh por breaker del día anterior</div>
+                                <div onclick="fetchDataFromPresets(this)" class="preset" presetQuery="safbsl15">Breakers con mayor consumo los últimos 15 días</div>
+                                <div onclick="fetchDataFromPresets(this)" class="preset" presetQuery="sasbtcgb">Consumo histórico total por cada dispositivo</div>
+                                <div onclick="fetchDataFromPresets(this)" class="preset" presetQuery="sabsgbd">Usuarios con menor consumo total por dispositivo</div>
+                                <div onclick="fetchDataFromPresets(this)" class="preset" presetQuery="sabtcy">Consumo kWh por breaker del día anterior</div>
                             </div>
                             <div class="convertTo">
-
+                                
                             </div>
                         </div>
                     </section>

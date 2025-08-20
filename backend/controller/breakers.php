@@ -54,7 +54,18 @@ $queries = [
                     FROM BREAKERS b 
                     JOIN USERS u ON (u.ID = b.ID_USER) 
                     JOIN DEPARTMENTS d ON (d.ID = u.ID_DEPARTMENT)
-                    WHERE b.ID = :id_breaker"  
+                    WHERE b.ID = :id_breaker",
+    'ssfrjoaf' => "SELECT 
+                    r.ID_BREAKER as ID, 
+                    d.DEPARTMENT_CODE,
+                    r.TEMP AS LAST_TEMP, 
+                    SUM(r.KWH) AS CONSUMPTION, 
+                    u.USERNAME AS PROPERTY,
+                    r.RECORD_DATE 
+                FROM RECORDS r 
+                    JOIN BREAKERS    b ON b.ID = r.ID_BREAKER
+                    JOIN USERS       u ON u.ID = b.ID_USER
+                    JOIN DEPARTMENTS d ON d.ID = u.ID_DEPARTMENT"
 ];
 
 switch ($_SERVER['REQUEST_METHOD']) {
