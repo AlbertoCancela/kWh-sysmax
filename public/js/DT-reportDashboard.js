@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchDataFromBackend() {    
     const myVariable = new PHPFetcher('/kWh-sysmax/backend/controller/');
-    let queryAdditions = " WHERE r.RECORD_DATE BETWEEN DATE('now', '-7 day') AND DATE('now') ORDER BY r.RECORD_DATE DESC";
+    let queryAdditions = " WHERE r.RECORD_DATE BETWEEN DATE('now', '-15 day') AND DATE('now') ORDER BY r.RECORD_DATE DESC";
     const response = await myVariable.fetchData('breakers.php', { query: 'ssfrjo', addition: queryAdditions,action: 'getRecordsToReport'}, 'POST');
     data = response.breakers.map((item, index) => ({
         idBreaker: item.ID,

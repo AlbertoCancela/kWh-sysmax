@@ -60,6 +60,10 @@ export async function verifyPassword(username, password) {
     return RESPONSE;
 }
 
+export async function universalHandler(data = {'hey': 'heyooo'}){
+    return data['hey']
+}
+
 export async function changePassword(username, newPassword) {
     const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('users.php', { query: 'ufu-up', params:{username: username, password: newPassword}, action: 'changeUserName'}, 'PUT');
