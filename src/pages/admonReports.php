@@ -27,14 +27,15 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Tu proyecto</title>
 </head>
-    <body>    
-        <div class="main-con">
+    <body>            
+        <div class="main-con">        
         <?php include_once "../components/general/header.php"?>
-        <?php include_once "../components/general/generalModal.php"?>
-        <main class="sysmax-main">
-            <section class="admon-reports">
-                <div class="admon-reports-mainContainer">
-                    <section class="admon-reports-section1">
+        <?php // include_once "../components/general/generalModal.php"?>
+        <main class="sysmax-main">            
+            <?php include_once "../components/admon/adminHeader.php"?>            
+            <section class="admon-reports">                                
+                <div class="admon-reports-mainContainer">                    
+                    <section class="admon-reports-section1">                        
                         <div class="filters">
                             <div class="filterSection">
                                 <div class="filter-title">Rango de fechas</div>
@@ -147,7 +148,7 @@
                     </section>
                     <section class="admon-reports-section2">
                         <div class="ars-title">
-                            <h2> Presets y conversiones </h2> 
+                            <h3> REPORTES </h3> 
                         </div>
                         <div class="pressetsAndConvertions">
                             <div class="presets">

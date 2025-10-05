@@ -24,7 +24,7 @@
   <body>    
     <div class="main-con">
       <?php include_once "components/general/header.php"?>
-      <main class="sysmax-main">
+      <main class="sysmax-main">        
         <!-- <div class="sysmax-hero"> -->
           <!-- <div class="hero-con"> -->
             <!-- <div class="herobox">
@@ -34,12 +34,13 @@
         <!-- </div> -->
         <?php 
         if($_SESSION['permissions'] == '1'){
+          include_once "components/admon/adminHeader.php";
           include_once "components/admon/breakersDashboard.php";
           include_once "components/admon/modal.php";
         }else{
+          include_once "components/user/userHeader.php";
           include_once "components/general/singleBreakerData.php";
           include_once "components/general/generalModal.php";
-
         }
         ?>
       </main>

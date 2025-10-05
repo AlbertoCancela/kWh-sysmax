@@ -25,11 +25,13 @@
     <title>Tu proyecto</title>
 </head>
   <body>    
-    <div class="main-con">
-      <?php include_once "../components/general/header.php"?>
-      <?php include_once "../components/general/generalModal.php"?>
+    <div class="main-con">        
+    <?php include_once "../components/general/header.php"?>    
+    <?php include_once "../components/general/generalModal.php"?>    
       <main class="sysmax-main">
+            <?php include_once "../components/admon/adminHeader.php"?>            
             <section class="userSettings">
+                <h3 class="table title">USUARIOS</h3>
                 <div class="userSettings-settings">
                     <div class="settings-header">
                         <i class='bx bxs-user bx-md'></i>
@@ -62,9 +64,9 @@
                         </div>
                     </div>
                 </div>
-            </section>
-      </main>
-    </div>
+            </section>            
+      </main>      
+    </div>    
     <script type="module">
         import { closeSession, getSingleBreakerData, changeUserName, verifyPassword, changePassword, changeName, changeEmail } from "/kWh-sysmax/public/js/general.js";
         window.closeSession = closeSession;

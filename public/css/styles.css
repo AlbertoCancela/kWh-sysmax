@@ -23,14 +23,15 @@
   --topbar-rgb: rgba(245, 245, 245, .95);
   --borderbottom-color: #0d0d0d;
   --borderbottom-color2: #59636e;
-  --borderbottom-color3: #000;
+  --borderbottom-color3: #212E83;
+  --border-bottom-color4: #58882C;
   --sysmax-blue: #65C4D9;
   --sysmax-blue1: #6BB2DB;
   --sysmax-blue2: #0077b6;
   --sysmax-error: #ff6961;
   --sysmax-electric_green: #c5eb5c; 
   --sysmax-main_bg: aliceblue;
-  --led-indicator1: #E1FF44;
+  --led-indicator1: #3F9FF5;
   --sysmax-noctisGray: #3C3B3B;
 }
 
@@ -71,15 +72,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
 }
 
-.client {
+/* .client {
   width: auto;
   height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;  
-}
+} */
 
 .btn-close {
   background-color: var(--sysmax-error);
@@ -92,6 +94,7 @@
   cursor: pointer;
   box-shadow: 1px 1px 1px 1px solid var(--borderbottom-color);
   transition: background-color .3s ease;
+  user-select: none;
 }
 
 .btn-close:hover {
@@ -103,13 +106,27 @@
 }
 
 .clientname {
+  margin-left: auto;
   font-family: var(--text-font);
-  color: var(--borderbottom-color);
+  color: var(--borderbottom-color2);
   font-weight: bold;
   font-size: .88em;
-  text-align: right;
-  padding-left: 10px;
+  text-align: right;  
   text-transform: uppercase;
+}
+
+h3 span {
+  font-family: var(--text-font);
+  font-size: .88em;
+  color: var(--sysmax-blue2);
+}
+
+.proptitle {
+  text-align: left;
+  font-size: .88em;
+  font-family: var(--text-font);
+  color: var(--borderbottom-color2);
+  padding: 5px;
 }
 
 .reading {
@@ -126,14 +143,56 @@
   outline: 2px solid var(--sysmax-blue1);  
 }
 
-
 /* Top Bar section end */
 
 .sysmax-main  {  
   width: 100%;
   height: auto;
-  background: aliceblue;
+  background-color: aliceblue;
 }
+
+/* submenu section */
+
+.sysmax-submenu {
+  position: sticky;
+  top: 61px;
+  width: 100%;
+  height: auto;
+  background-color: var(--top-bar_color1);
+  border-bottom: .7px solid var(--borderbottom-color2);
+  z-index: 100;
+}
+
+.submenu-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  width: 50%;
+  max-width: 1200px;
+  height: auto;
+  margin: auto;
+}
+
+.link {  
+  text-align: center;
+  font-family: var(--text-font);
+  font-size: .88em;
+  font-weight: bold;
+  color: var(--sysmax-blue2);
+  padding: 5px 7px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {  
+  color: #000;
+}
+
+.link:nth-of-type(3) {
+  pointer-events: none;
+}
+
+/* End submenu section */
 
 .sysmax-hero {
   width: 100%;
@@ -175,8 +234,7 @@
   padding: 10px;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  border-radius: 7px;
+  text-align: center;  
 }
 
 .reading-title {
@@ -189,14 +247,14 @@
 .reading-txt {
   display: block;
   width: 90%;
-  background-color: var(--led-indicator1);
+  background-color: var(--title-color);
+  border-radius: 7px;
   font-family: var(--font-lcd1);
   font-size: 1em;
   font-style: italic;
-  padding: 5px 15px;
-  border-radius: 7px;
-  outline: 1.5px solid var(--borderbottom-color2);
-  color: var(--borderbottom-color3);
+  font-weight: 400; 
+  padding: 5px 15px;  
+  color: var(--sysmax-electric_green);
 }
 
 .sys_title {
@@ -232,9 +290,9 @@
   font-size: .88em;
   text-decoration: none;
   padding: 7px 17px;  
-  transition: all .2s ease-in-out;
-  box-shadow: 1px 1px 1px var(--borderbottom-color);
-  border-radius: 7px;
+  transition: all .3s ease;
+  box-shadow: 1px 1px 1px var(--borderbottom-color); 
+  user-select: none; 
 }
 
 .btn-report i {
@@ -322,6 +380,22 @@
 
 @media (min-width: 280px) and (max-width: 425px) {
 
+  .nav {
+    padding: 0;
+  }
+
+  .sysmax-submenu .submenu-items {
+    width: 90%;
+  }
+
+  .proptitle {
+    font-size: 10px;
+  }
+
+  .clientname {
+    font-size: 10px;
+  }
+
   .box-link {
     padding: 0;
     text-align: right;
@@ -348,8 +422,20 @@
     padding: 0;
   }
 
-  .nav {
+  /* .nav {
     justify-content: space-around;
+  } */
+
+  .sysmax-submenu .submenu-items {
+    width: 90%;
+  }
+
+  .proptitle {
+    font-size: 12px;
+  }
+
+  .clientname {
+    font-size: 12px;
   }
 }
 
@@ -359,7 +445,19 @@
   }
 
   .nav {
-    justify-content: space-around;
+    justify-content: space-between;
+  }
+
+  .sysmax-submenu .submenu-items {
+    width: 90%;
+  }
+
+  .proptitle {
+    font-size: 12px;
+  }
+
+  .clientname {
+    font-size: 12px;
   }
 
   .sysmax-box {   
