@@ -60,6 +60,19 @@ export async function verifyPassword(username, password) {
     return RESPONSE;
 }
 
+export async function getRateValue(rateId) {
+    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const RESPONSE = await FETCHER.fetchData('breakers.php', { query: 'grvfrW', params:{id: rateId}, action: 'getRateValue'}, 'POST');
+    return RESPONSE;
+}
+
+export async function updateRateValue(rateValue, rateId) {
+    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const RESPONSE = await FETCHER.fetchData('breakers.php', { query: 'urvfrW', params:{rate_value: rateValue, id: rateId}, action: 'updateRateValue'}, 'PUT');
+    return RESPONSE;
+}
+
+
 export async function universalHandler(data = {'hey': 'heyooo'}){
     return data['hey']
 }

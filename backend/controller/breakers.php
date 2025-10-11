@@ -9,6 +9,8 @@ $queries = [
     'safr' => "SELECT * FROM RECORDS",
     'safrW-rId' => "SELECT * FROM RECORDS WHERE ID = :id",
     'safrW-bId' => "SELECT * FROM RECORDS WHERE ID_BREAKER = :id_breaker",
+    'grvfrW' => "SELECT ID, RATE_VALUE, UPDATE_AT FROM RATES WHERE ID = :id",
+    'urvfrW' => "UPDATE RATES SET RATE_VALUE = :rate_value, UPDATE_AT = CURRENT_TIMESTAMP WHERE ID = :id",
     'ssfrjo' => "SELECT 
                     r.ID_BREAKER as ID, 
                     d.DEPARTMENT_CODE,
@@ -119,11 +121,46 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     'breakers' => $result
                 ]);
                 break;
+            case 'getRateValue':
+                $query = $queries[$data['query']];
+                $params = $data['params'] ?? [];
+                $permitidos = ['id'];
+                foreach ($params as $key => $value) {
+                    if (in_array($key, $permitidos)) {
+                        $$key = $value;
+                    } else {
+                        unset($params[$key]);
+                    }
+                }
+                $result = $DB->executeQuery($query, $params);
+                echo json_encode([
+                    'status' => 'ok',
+                    'breakers' => $result
+                ]);
+                break;
         }
 
         break;
     case 'PUT': #to update data
-        # code...
+        switch( $data['action'] ){
+            case 'updateRateValue':
+                $query = $queries[$data['query']];
+                $params = $data['params'] ?? [];
+                $permitidos = ['id', 'rate_value'];
+                foreach ($params as $key => $value) {
+                    if (in_array($key, $permitidos)) {
+                        $$key = $value;
+                    } else {
+                        unset($params[$key]);
+                    }
+                }
+                $result = $DB->executeQuery($query, $params);
+                echo json_encode([
+                    'status' => 'ok',
+                    'breakers' => $result
+                ]);
+                break;
+        }
         break;
     case 'DELETE': #to delete data
         # code...
