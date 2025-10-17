@@ -1,9 +1,17 @@
 <?php
-require '../../../vendor/autoload.php';
-require 'pdf_helper.php'; // contiene la función generarPDF()
+require __DIR__ . '/../../../vendor/autoload.php';
+require __DIR__ . '/pdf_helper.php';
 
 // Leer el JSON enviado por fetch
 $data = json_decode(file_get_contents("php://input"), true);
+
+if (!$data) {
+    $data = [
+        'finalRate' => 0.00,
+        'owner' => 'Algo salió mal',
+        'breaker' => 'Error 500'
+    ];
+}
 
 $finalRate = $data['finalRate'];
 $owner = $data['owner'];

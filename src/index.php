@@ -52,10 +52,13 @@
     <script type="module" src="/kWh-sysmax/public/js/DT-admonDashboard.js"></script>
     <?php endif; ?>
     <script src="/kWh-sysmax/public/js/generalModal.js"></script>
+    <script src="/kWh-sysmax/public/js/rates.js"></script>
     <script type="module" src="/kWh-sysmax/public/js/singleBreakerReport.js"></script>
   <script type="module">
-    import { closeSession, getSingleBreakerData } from "/kWh-sysmax/public/js/general.js";
+    import { closeSession, getSingleBreakerData, getRateValue, getBreakerConsumption } from "/kWh-sysmax/public/js/general.js";
     window.closeSession = closeSession;
+    window.getRateValue = getRateValue;
+    window.getBreakerConsumption = getBreakerConsumption;
     <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] != 1): ?>
       document.addEventListener("DOMContentLoaded", async function(){
         const DATABREAKER = document.querySelector('#singleDataDashboard')

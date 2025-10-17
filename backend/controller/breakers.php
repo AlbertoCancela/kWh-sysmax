@@ -11,6 +11,7 @@ $queries = [
     'safrW-bId' => "SELECT * FROM RECORDS WHERE ID_BREAKER = :id_breaker",
     'grvfrW' => "SELECT ID, RATE_VALUE, UPDATE_AT FROM RATES WHERE ID = :id",
     'urvfrW' => "UPDATE RATES SET RATE_VALUE = :rate_value, UPDATE_AT = CURRENT_TIMESTAMP WHERE ID = :id",
+    'sCfrWdbtwn' => "SELECT SUM(r.KWH) as CONSUMPTION, u.NAME AS B_OWNER, b.DEVICE_NAME AS DEVICE_NAME FROM RECORDS r JOIN BREAKERS b ON (r.ID_BREAKER = b.ID) JOIN USERS u ON ( b.ID_USER = u.ID) WHERE ID_BREAKER=:id AND RECORD_DATE BETWEEN :dateStart AND :dateEnd",
     'ssfrjo' => "SELECT 
                     r.ID_BREAKER as ID, 
                     d.DEPARTMENT_CODE,
@@ -138,6 +139,22 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     'breakers' => $result
                 ]);
                 break;
+            case 'getBreakerConsumption':
+                $query = $queries[$data['query']];
+                $params = $data['params'] ?? [];
+                $permitidos = ['id', 'dateStart', 'dateEnd'];
+                foreach ($params as $key => $value) {
+                    if (in_array($key, $permitidos)) {
+                        $$key = $value;
+                    } else {
+                        unset($params[$key]);
+                    }
+                }
+                $result = $DB->executeQuery($query, $params);
+                echo json_encode([
+                    'status' => 'ok',
+                    'breakers' => $result
+                ]);
         }
 
         break;

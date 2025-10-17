@@ -31,6 +31,13 @@ function fillModalBreakerData(breakerRecords, breakerData){
         tdArr += `<tr><td>${record['KWH']/100}</td><td>${record['TEMP']}</td><td>${record['RECORD_DATE']}</td></tr>` 
     })
     TABLE.querySelector('tbody').innerHTML = tdArr;
+
+    const btn = document.getElementById('modal-data-buttonToReports');
+    btn.setAttribute(
+        'onclick',
+        `printRateByTimeAndId('${breakerData['ID']}', '2025-10-01', '2025-10-10')`
+    );
+
 }
 
 async function fillModalMainData(data){

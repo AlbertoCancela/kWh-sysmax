@@ -1,87 +1,19 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+    <title>testZone</title>
 </head>
 <body>
-    <button>Excell</button>
-    <button>PDF</button>
-    <button>another</button>
-    <div>
-        <div class="admon-reports-table">
-                            <table id="table-reports" class="modal-table_records">
-                                <thead>
-                                    <tr>
-                                    <th>ID_DISPOSITIVO</th>
-                                    <th>DEPTO</th>
-                                    <th>TEMPERATURA (°C)</th>
-                                    <th>CONSUMO (kWh)</th>
-                                    <th>USUARIO</th>
-                                    <th>FECHA REGISTRO</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>001</td>
-                                        <td>Sensor A</td>
-                                        <td>23</td>
-                                        <td>15.6</td>
-                                        <td>Juan Pérez</td>
-                                        <td>2025-08-09</td>
-                                    </tr>
-                                    <tr>
-                                        <td>001</td>
-                                        <td>Sensor A</td>
-                                        <td>23</td>
-                                        <td>15.6</td>
-                                        <td>Juan Pérez</td>
-                                        <td>2025-08-09</td>
-                                    </tr>
-                                    <tr>
-                                        <td>001</td>
-                                        <td>Sensor A</td>
-                                        <td>23</td>
-                                        <td>15.6</td>
-                                        <td>Juan Pérez</td>
-                                        <td>2025-08-09</td>
-                                    </tr>
-                                    <tr>
-                                        <td>001</td>
-                                        <td>Sensor A</td>
-                                        <td>23</td>
-                                        <td>15.6</td>
-                                        <td>Juan Pérez</td>
-                                        <td>2025-08-09</td>
-                                    </tr>
-                                    <tr>
-                                        <td>001</td>
-                                        <td>Sensor A</td>
-                                        <td>23</td>
-                                        <td>15.6</td>
-                                        <td>Juan Pérez</td>
-                                        <td>2025-08-09</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div id="pagination"></div>
-    </div>
+    <button data-idBreaker="65e6a732254c5669aceikp" class=""> Prueba 1</button>
+    <button data-idBreaker="6520fc0a00a365c22als9f" class=""> Prueba 2</button>
+    <button onclick = "printRateByTimeAndId('65e6a732254c5669aceikp', '2025-10-02', '2025-10-06')"> prueba test </button>
+    <script src="public/js/rates.js"></script>
+    <script type="module">
+        import { getBreakerConsumption, getRateValue } from "/kWh-sysmax/public/js/general.js";
+        window.getBreakerConsumption = getBreakerConsumption;
+        window.getRateValue = getRateValue;
+    </script>
 </body>
-<script type="module" src="/kWh-sysmax/public/js/DT-reportDashboard.js"></script>
-<script type="module" src="/kWh-sysmax/public/js/general.js"></script>
-<script>
-    
-</script>
-
-<!-- <script type="module">
-    import { closeSession, universalHandler } from "/kWh-sysmax/public/js/general.js";
-    window.closeSession = closeSession;
-    const value = await universalHandler();
-    console.log(value);    
-</script> -->
 </html>

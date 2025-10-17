@@ -72,6 +72,11 @@ export async function updateRateValue(rateValue, rateId) {
     return RESPONSE;
 }
 
+export async function getBreakerConsumption(id, dateStart, dateEnd){
+    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const RESPONSE = await FETCHER.fetchData('breakers.php', { query: 'sCfrWdbtwn', params:{id: id, dateStart: dateStart, dateEnd: dateEnd}, action: 'getBreakerConsumption'}, 'POST');
+    return RESPONSE;
+}
 
 export async function universalHandler(data = {'hey': 'heyooo'}){
     return data['hey']

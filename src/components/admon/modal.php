@@ -90,7 +90,7 @@
                     </tbody>
                 </table>
             </div>
-            <a id="modal-data-buttonToReports" href=""> Generar reporte </a>
+            <a id="modal-data-buttonToReports" onclick="printRateByTimeAndId('65e6a732254c5669aceikp', '2025-10-02', '2025-10-06')"> Generar reporte </a>
         </section>
     </div>
 </div>

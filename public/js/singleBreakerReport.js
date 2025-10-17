@@ -36,7 +36,7 @@ function singleReport( data ) {
             
             </div>
                 <div style="display:flex; flex-direction:row;" id="pagination"></div>
-                <button id="generalModal-button" type="button">Descargar</button>
+                <button id="generalModal-button" type="button">Descargar Reporte de pago</button>
             </div>
     `;
     fetchSingleBreakerData( data );
@@ -52,6 +52,12 @@ async function fetchSingleBreakerData( idBreaker ) {
         fechaRegistro: item.RECORD_DATE,
     }));
 
+    const btn = document.getElementById('generalModal-button');
+    btn.setAttribute(
+        'onclick',
+        `printRateByTimeAndId('${idBreaker}', '2025-10-01', '2025-10-10')`
+    );
+
     const rowStructure = ( item ) => `
         <td>${item.consumo}</td>
         <td>${item.temperatura}</td>
@@ -59,5 +65,6 @@ async function fetchSingleBreakerData( idBreaker ) {
         `;
     renderTable(currentPage, 'table-singleBreaker-reports', rowStructure, data);
 }
+
 
 window.singleReport = singleReport;
