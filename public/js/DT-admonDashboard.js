@@ -1,17 +1,18 @@
 import { PHPFetcher } from './handler_DOM.js';
 import { renderTable } from './dataTable.js';
-
+import { FetchData } from '../sysmax-api/fetchAPI.js';
 let currentPage = 1;
 let data = [];
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     fetchDataFromBackend();
 });
 
 async function fetchDataFromBackend() {
-    const myVariable = new PHPFetcher('/kWh-sysmax/backend/controller/');
-    const response = await myVariable.fetchData('breakers.php', { query: 'ssfb', action: 'getAllBreakersD'}, 'POST');
-    data = response.breakers.map((item, index) => ({
+    // const myVariable = new PHPFetcher('/backend/controller/');
+    // const response = await myVariable.fetchData('breakers.php', { query: 'ssfb', action: 'getAllBreakersD'}, 'POST');
+    const data = (await new FetchData().getLastRecords()).data;
+    const records = data.map((item, index) => ({
         id: item.ID,
         departement: item.DEPARTMENT_CODE,
         name: item.NAME,
@@ -21,6 +22,8 @@ async function fetchDataFromBackend() {
         propietario: item.PROPERTY,
         idBreaker: item.ID
     }));
+
+    // console.log(records)
 
     const rowStructure = ( item ) => `
         <td>${item.departement}</td>
@@ -34,7 +37,7 @@ async function fetchDataFromBackend() {
             <i class='bx bx-file bx-sm'></i>
             </button>
         </td>`;
-    renderTable(currentPage, 'table-breakerDisplay', rowStructure, data);
+    renderTable(currentPage, 'table-breakerDisplay', rowStructure, records);
 }
 
 

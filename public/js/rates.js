@@ -1,9 +1,11 @@
+import { FetchData } from "../sysmax-api/fetchAPI.js";
+
 async function updateRate(){
+    const fetchAPI = new FetchData();
     const newRate = document.getElementById('newRate').value;
-    // console.log(!isNaN(Number(newRate)))
     if(newRate && !isNaN(Number(newRate))){
-        const res = await updateRateValue(newRate, 1);
-        if(res.status == 'ok'){
+        const response = await fetchAPI.updateRateValue(newRate, 1);
+        if(response.success){
             window.location.reload();
         }
     }
@@ -14,7 +16,7 @@ function printRate( element ) {
     const owner = element.getAttribute('data-rateOwner');
     const breaker = element.getAttribute('data-rateBreakerName');
     console.log(finalRate + ' - ' + owner + ' - ' + breaker)
-    fetch('../../backend/documentGenerator/pdf/pdfGenerator.php', {
+    fetch('/backend/documentGenerator/pdf/pdfGenerator.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -46,7 +48,7 @@ const printRateByTimeAndId = async (id, dateStart = null, dateEnd = null) => {
     const breaker = response.breakers[0]['DEVICE_NAME'];
 
     // console.log(response);
-    fetch('/kWh-sysmax/backend/documentGenerator/pdf/pdfGenerator.php', {
+    fetch('/backend/documentGenerator/pdf/pdfGenerator.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -64,3 +66,7 @@ const printRateByTimeAndId = async (id, dateStart = null, dateEnd = null) => {
     })
     .catch(error => console.error('Error generando PDF:', error));
 }
+
+window.updateRate = updateRate;
+window.printRate = printRate;
+window.printRateByTimeAndId = printRateByTimeAndId;

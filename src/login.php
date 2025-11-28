@@ -2,10 +2,10 @@
 session_name('sysmax-tuya');
 session_start();
 
-if (isset($_SESSION['userName'])) {
-    header("Location: index.php");
-    exit;
-}
+// if (isset($_SESSION['userName'])) {
+//     header("Location: index.php");
+//     exit;
+// }
 ?>
 
 <!DOCTYPE html>

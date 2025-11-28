@@ -2,7 +2,7 @@
   session_name('sysmax-tuya');
   session_start();
   if (!isset($_SESSION['userName'])) {
-      header("Location: /kWh-sysmax/src/login.php");
+      header("Location: /src/login.php");
       exit;
   }
   // echo $_SESSION['data']['department'];
@@ -12,12 +12,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="/kWh-sysmax/public/img/sysmax_logo64.png" type="image/png">
-  <link rel="stylesheet" href="/kWh-sysmax/public/css/styles.css">
-  <link rel="stylesheet" href="/kWh-sysmax/public/css/dataTable.css">
-  <link rel="stylesheet" href="/kWh-sysmax/public/css/modal.css">
-  <link rel="stylesheet" href="/kWh-sysmax/public/css/generalModal.css">
-  <link href='/kWh-sysmax/public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="shortcut icon" href="/public/img/sysmax_logo64.png" type="image/png">
+  <link rel="stylesheet" href="/public/css/styles.css">
+  <link rel="stylesheet" href="/public/css/dataTable.css">
+  <link rel="stylesheet" href="/public/css/modal.css">
+  <link rel="stylesheet" href="/public/css/generalModal.css">
+  <link href='/public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <title>Tu proyecto</title>
 </head>
@@ -48,14 +48,14 @@
     </div>
   </body>
   <?php if (isset($_SESSION['permissions']) && $_SESSION['permissions'] == 1): ?>
-    <script type="module" src="/kWh-sysmax/public/js/modal.js"></script>
-    <script type="module" src="/kWh-sysmax/public/js/DT-admonDashboard.js"></script>
+    <script type="module" src="/public/js/modal.js"></script>
+    <script type="module" src="/public/js/DT-admonDashboard.js"></script>
     <?php endif; ?>
-    <script src="/kWh-sysmax/public/js/generalModal.js"></script>
-    <script src="/kWh-sysmax/public/js/rates.js"></script>
-    <script type="module" src="/kWh-sysmax/public/js/singleBreakerReport.js"></script>
+    <script src="/public/js/generalModal.js"></script>
+    <script src="/public/js/rates.js"></script>
+    <script type="module" src="/public/js/singleBreakerReport.js"></script>
   <script type="module">
-    import { closeSession, getSingleBreakerData, getRateValue, getBreakerConsumption } from "/kWh-sysmax/public/js/general.js";
+    import { closeSession, getSingleBreakerData, getRateValue, getBreakerConsumption } from "/public/js/general.js";
     window.closeSession = closeSession;
     window.getRateValue = getRateValue;
     window.getBreakerConsumption = getBreakerConsumption;
@@ -71,7 +71,4 @@
       })
     <?php endif; ?>
   </script>
-  <!-- <script>
-    abrirModal();
-  </script> -->
 </html>

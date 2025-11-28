@@ -13,7 +13,9 @@
       </tr>
     </thead>
     <tbody>
-      
+      <tr>
+        <td colspan="7">Cargando...</td>
+      </tr>
     </tbody>
   </table>
 

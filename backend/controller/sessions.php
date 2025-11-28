@@ -1,13 +1,21 @@
 <?php
 require_once "DB.php";
+require_once "RequestApi.php";
 header('Content-Type: application/json');
 $data = json_decode(file_get_contents('php://input'), true);
 $queryHandler = new QueryHandler();
 
 switch($data['action']){
     case 'startSession':
-        $response = $queryHandler->verifyCredentials($data['username'], $data['password']);
+        // $response = $queryHandler->verifyCredentials($data['username'], $data['password']);
         // echo json_encode($response[0]['USERNAME']);
+        $api = new ApiClient("http://localhost:8080/sysmax");
+        $response = $api->post("/user/verify", [
+            "username" => $data['username'],
+            "password" => $data['password']
+        ]);
+        
+        $response = $response['data'];
         if ( $response )
             try{
                 $userData = $response[0]['ID_PERMISSION'] == '1' ? ['userBreaker' => 'op'] : ['userBreaker' => $response[0]['ID_BREAKER']];

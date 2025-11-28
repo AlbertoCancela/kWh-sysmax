@@ -2,7 +2,7 @@ import { PHPFetcher } from './handler_DOM.js'
 
 export function closeSession(){
     const data = {"action": "closeSession"}
-    fetch('/kWh-sysmax/backend/controller/sessions.php', {
+    fetch('/backend/controller/sessions.php', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -19,61 +19,61 @@ export function closeSession(){
 }
 
 export async function switchBreakerStatus(breakerid, status){
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/tuyaApi/');
+    const FETCHER = new PHPFetcher('/backend/tuyaApi/');
     const RESPONSE = await FETCHER.fetchData('tuyaSwitchStatus.php', {status: status, breakerid: breakerid}, 'POST');
     return (RESPONSE);
 }
 
 export async function getSingleBreakerRecords(breakerId) {
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const FETCHER = new PHPFetcher('/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('breakers.php', { query: 'safrW-bIdL7', query2: 'ssfbW-bId', params:{id_breaker: breakerId}, action: 'getSingleBreakerD'}, 'POST');
     return RESPONSE;
 }
 
 export async function getSingleBreakerData(breakerId) {
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/tuyaApi/');
+    const FETCHER = new PHPFetcher('/backend/tuyaApi/');
     const RESPONSE = await FETCHER.fetchData('tuyaGetSingleBreaker.php', { deviceId: breakerId }, 'POST');
     return RESPONSE;
 }
 
 export async function changeUserName(id, newUserName){
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const FETCHER = new PHPFetcher('/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('users.php', { query: 'ufu-un', params:{id: id, username: newUserName}, action: 'changeUserName'}, 'PUT');
     return RESPONSE;
 }
 
 export async function changeName(id, newName){
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const FETCHER = new PHPFetcher('/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('users.php', { query: 'ufu-n', params:{id: id, name: newName}, action: 'changeName'}, 'PUT');
     return RESPONSE;
 }
 
 export async function changeEmail(id, newEmail) {
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const FETCHER = new PHPFetcher('/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('users.php', { query: 'ufu-e', params:{id: id, email: newEmail}, action: 'changeName'}, 'PUT');
     return RESPONSE;
 }
 
 export async function verifyPassword(username, password) {
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const FETCHER = new PHPFetcher('/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('users.php', { query: 'safuW-pw', params:{username: username, password: password}, action: 'changeUserName'}, 'PUT');
     return RESPONSE;
 }
 
 export async function getRateValue(rateId) {
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const FETCHER = new PHPFetcher('/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('breakers.php', { query: 'grvfrW', params:{id: rateId}, action: 'getRateValue'}, 'POST');
     return RESPONSE;
 }
 
 export async function updateRateValue(rateValue, rateId) {
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const FETCHER = new PHPFetcher('/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('breakers.php', { query: 'urvfrW', params:{rate_value: rateValue, id: rateId}, action: 'updateRateValue'}, 'PUT');
     return RESPONSE;
 }
 
 export async function getBreakerConsumption(id, dateStart, dateEnd){
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const FETCHER = new PHPFetcher('/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('breakers.php', { query: 'sCfrWdbtwn', params:{id: id, dateStart: dateStart, dateEnd: dateEnd}, action: 'getBreakerConsumption'}, 'POST');
     return RESPONSE;
 }
@@ -83,7 +83,7 @@ export async function universalHandler(data = {'hey': 'heyooo'}){
 }
 
 export async function changePassword(username, newPassword) {
-    const FETCHER = new PHPFetcher('/kWh-sysmax/backend/controller/');
+    const FETCHER = new PHPFetcher('/backend/controller/');
     const RESPONSE = await FETCHER.fetchData('users.php', { query: 'ufu-up', params:{username: username, password: newPassword}, action: 'changeUserName'}, 'PUT');
     return RESPONSE;
 }

@@ -2,8 +2,7 @@
 const userSettingActions = {
     'userName': async (id, value) => await changeUserName(id, value),
     'name': async (id, value) => await changeName(id, value), // ejemplo
-    'email': async (id, value) => await changeEmail(id, value), // si agregas más
-    // Agrega aquí más campos y funciones según lo necesites
+    'email': async (id, value) => await changeEmail(id, value),
 };
 
 function setUserSettings(data) {

@@ -1,4 +1,5 @@
-import { getSingleBreakerData, getSingleBreakerRecords, switchBreakerStatus } from "/kWh-sysmax/public/js/general.js";
+import { getSingleBreakerData, getSingleBreakerRecords, switchBreakerStatus } from "/public/js/general.js";
+import { FetchData } from "../sysmax-api/fetchAPI.js";
 
 const modal = document.getElementById('miModal');
 const toggle = document.getElementById('breakerToggle');
@@ -7,9 +8,12 @@ async function abrirModal(data) {
     modal.classList.add('show');
     if(data){
         const BREAKERID = data.getAttribute('idBreaker');
-        var modalData = await getSingleBreakerRecords(BREAKERID);
+        // var modalData = await getSingleBreakerRecords(BREAKERID);
         sessionStorage.setItem('breakerid', BREAKERID);
-        fillModalBreakerData(modalData['records'],modalData['breakerData'][0])
+        const fetchData = new FetchData();
+        let responseRecords = await fetchData.getLastRecordsByBreaker(BREAKERID, 7);
+        let responseBreakerData = await fetchData.getBreakerMainUserData(BREAKERID)
+        fillModalBreakerData(responseRecords.data,responseBreakerData.data[0]);
         fillModalMainData(data);
     }
 }
@@ -35,7 +39,7 @@ function fillModalBreakerData(breakerRecords, breakerData){
     const btn = document.getElementById('modal-data-buttonToReports');
     btn.setAttribute(
         'onclick',
-        `printRateByTimeAndId('${breakerData['ID']}', '2025-10-01', '2025-10-10')`
+        `printRateByTimeAndId('${breakerData['ID']}', '2025-10-01', '2025-10-03')`
     );
 
 }

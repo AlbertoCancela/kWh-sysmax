@@ -111,6 +111,10 @@ class TuyaCloud {
     return $this->sendRequest('/v1.0/iot-03/devices/' . $deviceId. '/commands', 'POST', $commands);
   }
 
+  public function getStatus($deviceId){
+    if (!isset($deviceId)) throw "[tuyacloud] You have to pass the `device_id` as an argument to this function 'getDevice'.";
+    return $this->sendRequest('/v1.0/iot-03/devices/' . $deviceId, 'GET');
+  }
 
 public function getDevices($pageSize = 20, $pageNo = 1, $schema = null) {
   $queryParams = [

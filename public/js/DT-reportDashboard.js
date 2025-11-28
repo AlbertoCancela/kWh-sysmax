@@ -1,18 +1,19 @@
 import { PHPFetcher } from './handler_DOM.js';
 import { renderTable } from './dataTable.js';
+import { FetchData } from '../sysmax-api/fetchAPI.js';
 
 let currentPage = 1;
 let data = [];
+const tbody = document.querySelector(`#table-reports tbody`);
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchDataFromBackend();
 });
 
-async function fetchDataFromBackend() {    
-    const myVariable = new PHPFetcher('/kWh-sysmax/backend/controller/');
-    let queryAdditions = " WHERE r.RECORD_DATE BETWEEN DATE('now', '-15 day') AND DATE('now') ORDER BY r.RECORD_DATE DESC";
-    const response = await myVariable.fetchData('breakers.php', { query: 'ssfrjo', addition: queryAdditions,action: 'getRecordsToReport'}, 'POST');
-    data = response.breakers.map((item, index) => ({
+async function fetchDataFromBackend() { 
+    const fetchAPI = new FetchData();
+    const response = await fetchAPI.getRecordsBySearch();
+    const data = response.data.map((item, index) => ({
         idBreaker: item.ID,
         departement: item.DEPARTMENT_CODE,
         temperatura: item.LAST_TEMP,
@@ -32,27 +33,11 @@ async function fetchDataFromBackend() {
     renderTable(currentPage, 'table-reports', rowStructure, data);
 }
 
-async function fetchDataFromPresets( data ) {  
-    const myVariable = new PHPFetcher('/kWh-sysmax/backend/controller/');
-    const preset = data.getAttribute('presetQuery');
-    let queryAdditions = '';
-    switch( preset ){
-        case 'safbsl15':
-            queryAdditions = " WHERE r.RECORD_DATE BETWEEN DATE('now', '-15 day') AND DATE('now') GROUP BY r.ID_BREAKER ORDER BY r.RECORD_DATE DESC";
-            break;
-        case 'sasbtcgb':
-            queryAdditions = " GROUP BY r.ID_BREAKER";
-            break;
-        case 'sabsgbd':
-            queryAdditions = " GROUP BY r.ID_BREAKER ORDER BY CONSUMPTION ASC";
-            break;
-        case 'sabtcy':
-            queryAdditions = " WHERE r.RECORD_DATE = DATE('now', '-1 day')";
-            break;
-    }
-
-    const response = await myVariable.fetchData('breakers.php', { query: 'ssfrjoaf', addition: queryAdditions, action: 'getRecordsToReport'}, 'POST');
-    data = response.breakers.map((item, index) => ({
+async function fetchDataFromPresets( numberCase ) {
+    tbody.innerHTML = '<td colspan="6">Cargando...</td>'
+    const fetchData = new FetchData();
+    const response = await fetchData.getRecordsByPresets(numberCase);
+    data = response.data.map((item, index) => ({
         idBreaker: item.ID,
         // id: item.ID,
         departement: item.DEPARTMENT_CODE,
@@ -72,42 +57,32 @@ async function fetchDataFromPresets( data ) {
         <td>${item.fechaRegistro}</td>
         `;
     renderTable(currentPage, 'table-reports', rowStructure, data);
-}
+ }
 
 export async function searchData(){
-    let dateStart = document.getElementById('date-start').value;
-    let dateEnd = document.getElementById('date-end').value;
+
+    let dateStart;
+    let dateEnd;
+    let departmentCode;
+    let orderDate;
+    let orderConsumption;
+
+    dateStart = document.getElementById('date-start').value || null;
+    dateEnd = document.getElementById('date-end').value || null;
+    departmentCode = document.getElementById('breakerSearchInput').value || null;
+    orderDate = document.querySelector('#orderByDate').value || null;
+    orderConsumption = document.querySelector('#orderByConsumption').value || null;
+    console.log(orderConsumption + ' - ' + orderDate + ' - ' + departmentCode);
     if(!dateVerification(dateStart, dateEnd)){
         console.log('error')
         return;
     }
-    let queryAdditions = ` WHERE r.RECORD_DATE BETWEEN '${dateStart}' AND '${dateEnd}' `;
-    let specificSearch = document.getElementById('breakerSearchInput').value;
-    if(specificSearch){
-        queryAdditions += ` AND d.DEPARTMENT_CODE = '${specificSearch}' `;
-    }
 
-    let orderByDate = document.querySelector('#orderByDate').value;
-    let orderByConsumption = document.querySelector('#orderByConsumption').value;
     
-    const validDir = new Set(['ASC', 'DESC']);
-    const orderParts = [];
-
-    if (validDir.has(orderByDate)) {
-        orderParts.push(`r.RECORD_DATE ${orderByDate}`);
-    }
-    if (validDir.has(orderByConsumption)) {
-        orderParts.push(`r.KWH ${orderByConsumption}`);
-    }
-
-    if (orderParts.length > 0) {
-        queryAdditions += ` ORDER BY ${orderParts.join(', ')}`;
-    }
-    
-    
-    const myVariable = new PHPFetcher('/kWh-sysmax/backend/controller/');
-    const response = await myVariable.fetchData('breakers.php', { query: 'ssfrjo', addition: queryAdditions,action: 'getRecordsToReport'}, 'POST');
-    data = response.breakers.map((item, index) => ({
+    tbody.innerHTML = '<td colspan="6">Cargando...</td>';
+    const fetchAPI = new FetchData();
+    const response = await fetchAPI.getRecordsBySearch(dateStart, dateEnd, departmentCode, orderDate, orderConsumption)
+    data = response.data.map((item, index) => ({
         idBreaker: item.ID,
         // id: item.ID,
         departement: item.DEPARTMENT_CODE,

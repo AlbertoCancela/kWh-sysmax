@@ -33,8 +33,11 @@ try {
         $i++;
     }
     // echo json_encode($breakersData, JSON_PRETTY_PRINT);
-    $tuyaController->dataProcessing($breakersData);
+    // $tuyaController->dataProcessing($breakersData);
     
+    $response = $tuya->getDevice("6520fc0a00a365c22als9f");
+echo json_encode($response, JSON_PRETTY_PRINT);
+
 } catch (Exception $e) {
     echo 'Error: ' . $e->getMessage();
 }

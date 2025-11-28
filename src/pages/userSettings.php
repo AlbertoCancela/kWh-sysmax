@@ -1,11 +1,4 @@
 <?php
-  session_name('sysmax-tuya');
-  session_start();
-  if (!isset($_SESSION['userName'])) {
-      header("Location: /kWh-sysmax/src/login.php");
-      exit;
-  }
-//   echo $_SESSION['data']['id'];
   $name = $_SESSION['data']['name'];
   $id = $_SESSION['data']['id'];
   $email = $_SESSION['data']['email'];
@@ -16,20 +9,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/kWh-sysmax/public/img/sysmax_logo64.png" type="image/png">
-    <link rel="stylesheet" href="/kWh-sysmax/public/css/styles.css">
-    <link rel="stylesheet" href="/kWh-sysmax/public/css/generalModal.css">
-    <link rel="stylesheet" href="/kWh-sysmax/public/css/userSettings.css">
-    <link href='/kWh-sysmax/public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="/public/img/sysmax_logo64.png" type="image/png">
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="stylesheet" href="/public/css/generalModal.css">
+    <link rel="stylesheet" href="/public/css/userSettings.css">
+    <link href='/public/boxicons-master/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Tu proyecto</title>
 </head>
   <body>    
     <div class="main-con">        
-    <?php include_once "../components/general/header.php"?>    
-    <?php include_once "../components/general/generalModal.php"?>    
+    <?php include_once __DIR__ . "/../components/general/header.php"?>    
+    <?php include_once __DIR__ . "/../components/general/generalModal.php"?>    
       <main class="sysmax-main">
-            <?php include_once "../components/admon/adminHeader.php"?>            
+            <?php include_once __DIR__ . "/../components/admon/adminHeader.php"?>            
             <section class="userSettings">
                 <h3 class="table title">USUARIOS</h3>
                 <div class="userSettings-settings">
@@ -68,7 +61,7 @@
       </main>      
     </div>    
     <script type="module">
-        import { closeSession, getSingleBreakerData, changeUserName, verifyPassword, changePassword, changeName, changeEmail } from "/kWh-sysmax/public/js/general.js";
+        import { closeSession, getSingleBreakerData, changeUserName, verifyPassword, changePassword, changeName, changeEmail } from "/public/js/general.js";
         window.closeSession = closeSession;
         window.changeUserName = changeUserName;
         window.verifyPassword = verifyPassword;
@@ -76,7 +69,7 @@
         window.changeName = changeName;
         window.changeEmail = changeEmail;
     </script>
-    <script src="/kWh-sysmax/public/js/generalModal.js"></script>
-    <script src="/kWh-sysmax/public/js/userSettings.js"></script>
+    <script src="/public/js/generalModal.js"></script>
+    <script src="/public/js/userSettings.js"></script>
   </body>
 </html>
